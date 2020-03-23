@@ -1,0 +1,21 @@
+﻿@page "/surveys/surveydetail/accountsurvey/{AccountSurveyId:int}"
+  <div class="account-root">
+
+    <Grid Container
+          Spacing="@Spacing.Four">
+      <Grid Item
+            Large="@GridSize.Twelve"
+            Medium="@GridSize.Twelve"
+            ExtraLarge="@GridSize.Twelve"
+            ExtraSmall="@GridSize.Twelve">
+        <AccountProfile User="@User"/>
+      </Grid>
+      <Grid Item
+            Large="@GridSize.Twelve"
+            Medium="@GridSize.Twelve"
+            ExtraLarge="@GridSize.Twelve"
+            ExtraSmall="@GridSize.Twelve">
+        <AccountSurveyCard AccountSurvey="@AccountSurvey"  />
+      </Grid>
+    </Grid>
+  </div>

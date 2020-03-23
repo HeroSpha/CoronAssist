@@ -1,0 +1,59 @@
+﻿@page "/AccountSurveyCard"
+
+  <Card Class="account-details-root">
+    <form autoComplete="off"
+          noValidate>
+      <CardHeader 
+                  Title="User Survey" />
+      <Divider />
+      <CardContent>
+        <Grid Container
+              Spacing="@Spacing.Three">
+          <Grid Item
+                Medium="@GridSize.Six"
+                ExtraSmall="@GridSize.Twelve">
+            <Typography Class="account-profile-date-text"
+                        Color="@Color.TextSecondary"
+                        Variant="@TypographyVariant.H4">
+              @AccountSurvey.Survey?.Name
+            </Typography>
+          </Grid>
+          <Grid Item
+                Medium="@GridSize.Six"
+                ExtraSmall="@GridSize.Twelve">
+            <Typography Class="account-profile-date-text"
+                        Color="@Color.TextSecondary"
+                        Variant="@TypographyVariant.Body1">
+             <strong>Risk Points </strong>  @AccountSurvey.Risk 
+            </Typography>
+          </Grid>
+          <Grid Item
+                Medium="@GridSize.Six"
+                ExtraSmall="@GridSize.Twelve">
+            <Typography Class="account-profile-date-text"
+                        Color="@Color.TextSecondary"
+                        Variant="@TypographyVariant.Body1">
+            <strong>Date</strong>  @AccountSurvey.SurveyDate.ToString()
+            </Typography>
+          </Grid>
+          <Grid Item
+                Medium="@GridSize.Six"
+                ExtraSmall="@GridSize.Twelve">
+            <Typography Class="account-profile-date-text"
+                        Color="@Color.TextSecondary"
+                        Variant="@TypographyVariant.Body1">
+              <strong>Risk Status</strong>  @AccountSurvey.UserSurveyStatus.ToString() 
+            </Typography>
+          </Grid>
+         
+        </Grid>
+      </CardContent>
+      <Divider />
+      <CardActions>
+        <Button Color="@Color.Primary"
+                Variant="@ButtonVariant.Contained">
+          Book Appointment
+        </Button>
+      </CardActions>
+    </form>
+  </Card>

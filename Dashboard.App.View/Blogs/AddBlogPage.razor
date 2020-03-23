@@ -1,0 +1,58 @@
+﻿@page "/blogs/addblog"
+  <div class="account-root">
+    <form>
+      <input type="text" style="width: 100%; padding: 12px 20px; margin: 8px 0; box-sizing: border-box;" class="form-control" placeholder="Blog Title" @bind-value="@Title" />
+    </form>
+    <br />
+    <BlazoredTextEditor @ref="@QuillHtml">
+      <ToolbarContent>
+        <select class="ql-header">
+          <option selected=""></option>
+          <option value="1"></option>
+          <option value="2"></option>
+          <option value="3"></option>
+          <option value="4"></option>
+          <option value="5"></option>
+        </select>
+        <span class="ql-formats">
+          <button class="ql-bold"></button>
+          <button class="ql-italic"></button>
+          <button class="ql-underline"></button>
+          <button class="ql-strike"></button>
+        </span>
+        <span class="ql-formats">
+          <select class="ql-color"></select>
+          <select class="ql-background"></select>
+        </span>
+        <span class="ql-formats">
+          <button class="ql-list" value="ordered"></button>
+          <button class="ql-list" value="bullet"></button>
+        </span>
+        <span class="ql-formats">
+          <button class="ql-link"></button>
+        </span>
+      </ToolbarContent>
+      <EditorContent>
+        <h4>This Toolbar works with HTML</h4>
+        <a href="http://BlazorHelpWebsite.com">
+          BlazorHelpWebsite.com
+        </a>
+      </EditorContent>
+    </BlazoredTextEditor>
+    <br />
+    <button class="btn btn-primary"
+            @onclick="GetHTML">
+      Get HTML
+    </button>
+    <button class="btn btn-primary"
+            @onclick="Publish">
+      Publish Blog
+    </button>
+    <br />
+    <div>
+      <br />
+      @((MarkupString)QuillHTMLContent)
+      @QuillHTMLContent
+    </div>
+    <br />
+  </div>

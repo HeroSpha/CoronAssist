@@ -1,0 +1,44 @@
+﻿<Grid Item ExtraSmall="@GridSize.Twelve">
+  <Grid Container Spacing="@Spacing.Three">
+    
+    <Grid Item ExtraSmall="@GridSize.Six">
+      <div style="margin: auto;
+            display: flex;
+            outline: 0;
+            padding: 20px;
+            border-radius: 4px;
+            justify-content: center;">
+        <Card Style="max-width: 100%;">
+          <CardHeader Title="@Survey.Name"
+                      Subheader="@Survey.CreatedOn.ToString()">
+            <AvatarContent>
+              <Avatar aria-label="recipe" Style="background-color: #f44336;">
+               C
+              </Avatar>
+            </AvatarContent>
+            <ActionContent>
+              <IconButton aria-label="settings">
+                <MoreVertIcon />
+              </IconButton>
+            </ActionContent>
+          </CardHeader>
+          <CardMedia Style="height: 0; padding-top: 56.25%;"
+                     Image="./images/paella.jpg" />
+          <CardContent>
+            <Typography Variant="@TypographyVariant.Body2" Color="@Color.TextSecondary" Component="p">
+             @Survey.Description
+            </Typography>
+          </CardContent>
+          
+          <CardActions>
+            <Button Color="Color.TextPrimary">Low Risk Upper Bound @Survey.LowUpperBound</Button>
+            <Button Color="Color.TextPrimary">Medium Risk Upper Bound @Survey.MidUpperBound </Button>
+           
+          </CardActions>
+        </Card>
+      </div>
+    </Grid>
+    
+  </Grid>
+</Grid>
+

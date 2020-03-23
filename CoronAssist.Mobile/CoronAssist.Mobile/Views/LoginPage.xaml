@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:icon="clr-namespace:CoronAssist.Mobile.Services"
+             NavigationPage.HasNavigationBar="False"
+             Visual="Material"
+             Shell.NavBarIsVisible="False"
+             x:Class="CoronAssist.Mobile.Views.LoginPage">
+    <ContentPage.Content>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Frame HasShadow="True" IsClippedToBounds="True" Padding="2" CornerRadius="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Image Source="logo.png" Aspect="AspectFill"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1">
+                        <StackLayout Orientation="Horizontal">
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource Glyph="{x:Static icon:IconFont.Account }"
+                                 FontFamily="{StaticResource MaterialFontFamily}"
+                                 Size="22"
+                                                     Color="{StaticResource PrimaryColor}"/>
+                                </Image.Source>
+                            </Image>
+                            <Entry Placeholder="Email address" Text="{Binding Username, Mode=TwoWay}" HorizontalOptions="FillAndExpand" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource Glyph="{x:Static icon:IconFont.Key }"
+                                 FontFamily="{StaticResource MaterialFontFamily}"
+                                 Size="22"
+                                                     Color="{StaticResource PrimaryColor}"/>
+                                </Image.Source>
+                            </Image>
+                            <Entry Placeholder="Password" Text="{Binding Password, Mode=TwoWay}" IsPassword="True" HorizontalOptions="FillAndExpand" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Reset Password" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ResetPasswordCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Button Text="Sign In" TextColor="White" Command="{Binding LoginCommand}" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="Fill"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+          
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                
+                <Label FontSize="Medium" VerticalOptions="Start" HorizontalOptions="CenterAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Don't have account? " />
+                            <Span Text="Create account" TextColor="Red">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label FontSize="Large" Grid.Row="1" VerticalOptions="End" HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="CORON" TextColor="{StaticResource SecondaryColor}"/>
+                            <Span Text="ASSIST" TextColor="{StaticResource PrimaryColor}">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

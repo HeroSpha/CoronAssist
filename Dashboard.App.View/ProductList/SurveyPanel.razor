@@ -1,0 +1,16 @@
+﻿<Grid
+    Container
+    Spacing="@Spacing.Three">
+    @foreach(var survey in Surveys)
+    {
+        <Grid
+            Item
+            @key="@survey.SurveyId"
+            Large="@GridSize.Six"
+            Medium="@GridSize.Six"
+            Small="@GridSize.Twelve"
+            ExtraLarge="@GridSize.Four">
+            <SurveyCard Survey="@survey" />
+        </Grid>
+    }
+</Grid>

@@ -1,0 +1,14 @@
+﻿<Grid Container
+      Spacing="@Spacing.Three">
+  @foreach (var book in Bookings)
+  {
+      <Grid Item
+            @key="@book.AccountBookId"
+            Large="@GridSize.Four"
+            Medium="@GridSize.Six"
+            Small="@GridSize.Twelve"
+            ExtraLarge="@GridSize.Three">
+        <BookCard Book="@book" DeclineBooking="@DeclineBooking"  />
+      </Grid>
+  }
+</Grid>

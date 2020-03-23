@@ -1,0 +1,20 @@
+﻿<div class="users-toolbar-root">
+    <div class="users-toolbar-row">
+      <h3>Users</h3>
+        <span class="users-toolbar-spacer" />
+        <Button class="users-toolbar-import-button">Import</Button>
+        <Button class="users-toolbar-export-button">Export</Button>
+        <Button
+            Color="@Color.Primary"
+            Variant="@ButtonVariant.Contained"
+                OnClick="OnAddUser">
+          
+            Add
+        </Button>
+    </div>
+    <div class="users-toolbar-row">
+        <SearchInput
+            Class="users-toolbar-search-input"
+            Placeholder="Search user"  />
+    </div>
+</div>

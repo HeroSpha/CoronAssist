@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Shell.TitleColor="Red"
+             Shell.BackgroundColor="{StaticResource DarkElevation12dp}"
+             x:Class="CoronAssist.Mobile.Views.BlogDetailPage">
+    <Shell.TitleView>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Text="{Binding Blog.Title}" FontSize="Large" TextColor="{StaticResource PrimaryColor}" FontFamily="{StaticResource Regular}" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <ScrollView>
+            <Label Text="{Binding Blog.Description}" TextType="Html" />
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

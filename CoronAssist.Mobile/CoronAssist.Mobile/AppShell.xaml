@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       mc:Ignorable="d"
+        xmlns:icon="clr-namespace:CoronAssist.Mobile.Services"
+       xmlns:local="clr-namespace:CoronAssist.Mobile.Views"
+       Title="CoronAssist.Mobile"
+       x:Class="CoronAssist.Mobile.AppShell">
+
+    <!-- 
+        Styles and Resources 
+    -->
+    <!--<Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#fbfffa</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style x:Key="MyBaseStyle" TargetType="Element">
+
+                <Setter Property="Shell.ForegroundColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#999c98"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+
+            <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="TabBar" BasedOn="{StaticResource MyBaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>-->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#fbfffa</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="White" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style x:Key="MyBaseStyle" TargetType="Element">
+                <Setter Property="Shell.ForegroundColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource DarkElevation12dp}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+
+            <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="TabBar" BasedOn="{StaticResource MyBaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+    <ShellItem Route="login">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" />
+    </ShellItem>
+    <!-- Your Pages -->
+    <TabBar>
+        <Tab Title="Screening" Route="home">
+            <Tab.Icon>
+                <FontImageSource Glyph="{x:Static icon:IconFont.FormatListChecks }"
+                                 FontFamily="{StaticResource MaterialFontFamily}"
+                                 Size="18"/>
+
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:SurveyPage}" Title="Buy" />
+
+        </Tab>
+        <Tab Title="FAQ">
+            <Tab.Icon>
+                <FontImageSource Glyph="{x:Static icon:IconFont.BeakerQuestion }"
+                                 FontFamily="{StaticResource MaterialFontFamily}"
+                                 Size="18"/>
+
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:FaqPage}" />
+        </Tab>
+        <Tab Title="Blog">
+            <Tab.Icon>
+                <FontImageSource Glyph="{x:Static icon:IconFont.FileDocument }"
+                                 FontFamily="{StaticResource MaterialFontFamily}"
+                                 Size="18"/>
+
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:BlogPage}" />
+        </Tab>
+        <Tab Title="Bookings" Route="booking">
+            <Tab.Icon>
+                <FontImageSource Glyph="{x:Static icon:IconFont.Book }"
+                                 FontFamily="{StaticResource MaterialFontFamily}"
+                                 Size="18"/>
+
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:BookingPage}" />
+        </Tab>
+        <Tab Title="Profile">
+            <Tab.Icon>
+                <FontImageSource Glyph="{x:Static icon:IconFont.Account }"
+                                 FontFamily="{StaticResource MaterialFontFamily}"
+                                 Size="18"/>
+
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}" />
+        </Tab>
+    </TabBar>
+   
+
+    <!-- Optional Templates 
+    // These may be provided inline as below or as separate classes.
+
+    // This header appears at the top of the Flyout.
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid>ContentHere</Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    // ItemTemplate is for ShellItems as displayed in a Flyout
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <ContentView>
+                Bindable Properties: Title, Icon
+            </ContentView>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    // MenuItemTemplate is for MenuItems as displayed in a Flyout
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <ContentView>
+                Bindable Properties: Text, Icon
+            </ContentView>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    -->
+
+</Shell>

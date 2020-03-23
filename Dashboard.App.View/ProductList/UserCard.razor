@@ -1,0 +1,39 @@
+﻿<Card Class="dashboard-budget-root">
+  <CardContent>
+    <Grid Container
+          Justify="@Justify.SpaceBetween">
+      <Grid Item>
+        <Typography Class="dashboard-budget-title"
+                    Color="@Color.TextSecondary"
+                    GutterBottom
+                    Variant="@TypographyVariant.Body2">
+          @AccountSurvey.Account.Fullname
+        </Typography>
+        <Typography Variant="@TypographyVariant.Body2">
+          @AccountSurvey.SurveyDate
+        </Typography>
+      </Grid>
+      <Grid Item>
+        <Typography Class="dashboard-budget-caption"
+                    Variant="@TypographyVariant.Caption" >
+           @AccountSurvey.Account.PhoneNumber
+        </Typography>
+      </Grid>
+    </Grid>
+    <div class="dashboard-budget-difference">
+      <ArrowDownwardIcon Class="dashboard-budget-difference-icon" />
+      <Typography Class="dashboard-budget-difference-value"
+                  Variant="@TypographyVariant.Body2">
+        @($"{AccountSurvey.Risk} {AccountSurvey.UserSurveyStatus.ToString()} Risk")
+      </Typography>
+      
+    </div>
+    <CardActions Class="dashboard-sales-chart-actions">
+      <Button Color="@Color.Primary"
+              Size="@Size.Small"
+              Variant="@ButtonVariant.Text" OnClick="@(_=> ViewAccountSurvey.InvokeAsync(AccountSurvey.AccountSurveyId))">
+        View Details <ArrowRightIcon />
+      </Button>
+    </CardActions>
+  </CardContent>
+</Card>

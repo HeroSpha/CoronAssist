@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CoronAssist.Mobile.App">
+    <Application.Resources>
+        <OnPlatform x:TypeArguments="x:String" x:Key="Regular">
+            <On Platform="Android" Value="Roboto-Regular.ttf#Roboto Regular" />
+            <On Platform="iOS" Value="Roboto-Regular" />
+        </OnPlatform>
+        <OnPlatform x:TypeArguments="x:String" x:Key="Light">
+            <On Platform="Android" Value="Roboto-Light.ttf#Roboto Light" />
+            <On Platform="iOS" Value="Roboto-Light" />
+        </OnPlatform>
+        <OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+            <On Platform="iOS" Value="Material Design Icons" />
+            <On Platform="Android" Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+
+        </OnPlatform>
+        <OnPlatform x:Key="ToolbarHeight" x:TypeArguments="GridLength">
+            <On Platform="iOS">80</On>
+            <On Platform="Android">60</On>
+        </OnPlatform>
+
+        <Thickness x:Key="StatusBarHeightPadding"
+                       Bottom="0"
+                       Left="0"
+                       Right="0">
+            <Thickness.Top>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="iOS">20</On>
+                    <On Platform="Android">0</On>
+                </OnPlatform>
+            </Thickness.Top>
+        </Thickness>
+
+        <OnPlatform x:Key="BottomBarHeight" x:TypeArguments="GridLength">
+            <On Platform="iOS">65</On>
+            <On Platform="Android">65</On>
+        </OnPlatform>
+
+
+
+
+        <Color x:Key="DarkSurface">#ffffff</Color>
+
+        <Color x:Key="DarkElevation2dp">#212121</Color>
+        <Color x:Key="DarkElevation4dp">#272727</Color>
+        <Color x:Key="DarkElevation8dp">#2D2D2D</Color>
+        <Color x:Key="DarkElevation12dp">#323232</Color>
+        <Color x:Key="DarkElevation16dp">#353535</Color>
+        <Color x:Key="DarkElevation24dp">#373737</Color>
+
+        <Color x:Key="PrimaryColor">#c6d200</Color>
+        <Color x:Key="SecondaryColor">#94d7d2</Color>
+    </Application.Resources>
+</Application>

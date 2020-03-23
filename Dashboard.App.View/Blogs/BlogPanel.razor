@@ -1,0 +1,14 @@
+﻿<Grid Container
+      Spacing="@Spacing.Three">
+  @foreach (var blog in AllBlogs)
+  {
+    <Grid Item
+          @key="@blog.BlogId"
+          Large="@GridSize.Four"
+          Medium="@GridSize.Six"
+          Small="@GridSize.Twelve"
+          ExtraLarge="@GridSize.Three">
+      <BlogCard Blog="@blog"  />
+    </Grid>
+  }
+</Grid>

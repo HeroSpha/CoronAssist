@@ -1,0 +1,43 @@
+﻿<Card Class="account-profile-root">
+    <CardContent>
+        <div class="account-profile-details">
+            <div>
+                <Typography
+                    GutterBottom
+                    Variant="@TypographyVariant.H4">
+                    @User.Fullname
+                </Typography>
+                <Typography
+                    Class="account-profile-location-text"
+                    Color="@Color.TextSecondary"
+                    Variant="@TypographyVariant.Body1">
+                    @User.PhoneNumber
+                </Typography>
+                <Typography
+                    Class="account-profile-date-text"
+                    Color="@Color.TextSecondary"
+                    Variant="@TypographyVariant.Body1">
+                    @User.FullAddress
+                </Typography>
+            </div>
+            <Avatar
+                Class="account-profile-avatar"
+                Src="./images/avatars/avatar_11.png" />
+        </div>
+        <div class="account-profile-progress">
+            <Typography Variant="@TypographyVariant.Body1">@User.Email</Typography>
+         
+        </div>
+    </CardContent>
+    <Divider />
+    <CardActions>
+    <Button
+        Class="account-profile-upload-button"
+        Color="@Color.Primary"
+        Variant="@ButtonVariant.Text">
+       View Details <ArrowRightIcon />
+    </Button>
+       
+    </CardActions>
+</Card>
+

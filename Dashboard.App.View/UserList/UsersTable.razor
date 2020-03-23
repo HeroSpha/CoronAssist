@@ -1,0 +1,59 @@
+﻿<Card Class="users-table-root">
+  <CardContent Class="users-table-content">
+    <div class="users-table-inner">
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell Padding="@Padding.Checkbox">
+            
+            </TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Address</TableCell>
+            <TableCell>Phone</TableCell>
+            <TableCell>Role</TableCell>
+            <TableCell></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          @foreach (var user in Users)
+          {
+            <TableRow @key="@user"
+                      Class="users-table-row"
+                      Hover
+                      Selected="true">
+              <TableCell Padding="@Padding.Checkbox">
+                <Button OnClick="@(_=> TakeSurvey.InvokeAsync(user.Id))"><Skclusive.Material.Icon.ListIcon /></Button>
+              </TableCell>
+              <TableCell>
+                <div class="users-table-name-container">
+                  <Avatar Class="users-table-avatar"
+                          Src="./images/avatars/avatar_11.png">
+                    @user.Fullname
+                  </Avatar>
+                  <Typography Variant="@TypographyVariant.Body1">
+                    @user.Fullname
+                  </Typography>
+                </div>
+              </TableCell>
+              <TableCell>@user.Email</TableCell>
+              <TableCell>
+                @user.FullAddress
+              </TableCell>
+              <TableCell>@user.PhoneNumber</TableCell>
+              <TableCell>
+                23 May 2020
+              </TableCell>
+              <TableCell>
+                
+                <Button Color="Color.Secondary" OnClick="@(_=> DeleteUser.InvokeAsync(user))">
+                  <DeleteIcon />
+                </Button>
+              </TableCell>
+            </TableRow>
+          }
+        </TableBody>
+      </Table>
+    </div>
+  </CardContent>
+</Card>

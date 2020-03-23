@@ -1,0 +1,87 @@
+﻿@page "/surveys/allsurveys/addsurvey"
+  <div class="products-root">
+    <Card Class="account-details-root">
+      <form autoComplete="off"
+            noValidate>
+        <CardHeader Subheader="Survey"
+                    Title="Add new survey" />
+        <Divider />
+        <CardContent>
+          <Grid Container
+                Spacing="@Spacing.Three">
+            <Grid Item
+                  Medium="@GridSize.Twelve"
+                  ExtraSmall="@GridSize.Twelve"
+                  ExtraLarge="@GridSize.Six">
+              <TextField FullWidth
+                         Helper="Please specify the survey name"
+                         Label="Survey name"
+                         OnChange="@HandleNameChange"
+                         Margin="@Margin.Dense"
+                         Name="FirstName"
+                         Required="true"
+                         Value="@Name"
+                         Variant="@ControlVariant.Outlined" />
+            </Grid>
+            <Grid Item
+                  Medium="@GridSize.Twelve"
+                  ExtraSmall="@GridSize.Twelve">
+
+              <TextField FullWidth
+                         Helper="Please specify the survey description"
+                         Label="Description"
+                         OnChange="@HandleDescriptionChange"
+                         Margin="@Margin.Dense"
+                         Name="Description"
+                         Required="true"
+                         Type=""
+                         Value="@Description"
+                         Variant="@ControlVariant.Outlined" />
+            </Grid>
+            <Grid Item
+                  Medium="@GridSize.Twelve"
+                  ExtraSmall="@GridSize.Twelve"
+                  ExtraLarge="@GridSize.Six">
+
+              <TextField FullWidth
+                         Helper="Please specify upper bound for low risk"
+                         Label="Low upper bound"
+                         OnChange="@HandleLowUpperBoundChange"
+                         Margin="@Margin.Dense"
+                         Name="LowUpperBound"
+                         Required="true"
+                         Type="number"
+                         Value="@LowUpperBound"
+                         Variant="@ControlVariant.Outlined" />
+            </Grid>
+            <Grid Item
+                  Medium="@GridSize.Twelve"
+                  ExtraSmall="@GridSize.Twelve"
+                  ExtraLarge="@GridSize.Six">
+
+              <TextField FullWidth
+                         Helper="Please specify upper bound for mediun risk"
+                         Label="Description"
+                         OnChange="@HandleMidUpperBoundChange"
+                         Margin="@Margin.Dense"
+                         Name="MidUpperBound"
+                         Required="true"
+                         Type="number"
+                         Value="@MidUpperBound"
+                         Variant="@ControlVariant.Outlined" />
+            </Grid>
+
+          </Grid>
+        </CardContent>
+        <Divider />
+        <CardActions>
+          <Button Color="@Color.Primary"
+                  Variant="@ButtonVariant.Contained"
+                  OnClick="@AddSurveyAsync">
+            Save details
+          </Button>
+        </CardActions>
+      </form>
+    </Card>
+  </div>
+    

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:icon="clr-namespace:CoronAssist.Mobile.Services"
+             Shell.BackgroundColor="{StaticResource DarkElevation12dp}"
+             x:Class="CoronAssist.Mobile.Views.SurveyPage">
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+            <Label  FontSize="Large" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource Regular}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="CORON" TextColor="{StaticResource SecondaryColor}"/>
+                        <Span Text="ASSIST" TextColor="{StaticResource PrimaryColor}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding LogOutCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icon:IconFont.Logout }"
+                                 FontFamily="{StaticResource MaterialFontFamily}"
+                                 Size="18"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+       
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar Placeholder="Search screening" />
+            <CollectionView ItemsSource="{Binding Surveys}" Margin="5" SelectionMode="Single" SelectedItem="{Binding SelectedSurvey, Mode=TwoWay}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="True"  CornerRadius="10" IsClippedToBounds="True" BackgroundColor="{StaticResource DarkElevation12dp}" Margin="5">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryColor}"  FontFamily="{StaticResource Regular}"  HorizontalOptions="StartAndExpand" FontSize="Large"/>
+                                    <Label Text="{Binding CreatedOn}"  FontFamily="{StaticResource Regular}" TextColor="{StaticResource SecondaryColor}" VerticalOptions="Center" HorizontalOptions="End" FontSize="Small"/>
+                                </StackLayout>
+                                <Label Text="{Binding Description}" FontSize="Micro" TextColor="Wheat"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+       
+    </ContentPage.Content>
+</ContentPage>

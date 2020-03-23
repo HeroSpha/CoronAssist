@@ -1,0 +1,44 @@
+﻿<Card Class="account-profile-root">
+  <CardContent>
+    <div class="account-profile-details">
+      <div>
+        <Typography GutterBottom
+                    Variant="@TypographyVariant.H5">
+          @Book.PatientName
+        </Typography>
+        <Typography Class="account-profile-location-text"
+                    Color="@Color.TextSecondary"
+                    Variant="@TypographyVariant.Body1">
+          @Book.Address
+        </Typography>
+        <Typography Class="account-profile-date-text"
+                    Color="@Color.TextSecondary"
+                    Variant="@TypographyVariant.Body1">
+          <strong>@Book.BookDate.ToShortDateString()</strong>
+        </Typography>
+      </div>
+      <Avatar Class="account-profile-avatar"
+              Src="./images/avatars/avatar_11.png" />
+    </div>
+    <div class="account-profile-progress">
+      <Typography Variant="@TypographyVariant.Body1">Booking Status: @Book.BookingStatus.ToString()</Typography>
+      
+    </div>
+  </CardContent>
+  <Divider />
+  <CardActions>
+    <Button Class="account-profile-upload-button"
+            Color="@Color.Primary"
+            Variant="@ButtonVariant.Text"
+            OnClick="@(_ => ProcessBooking.InvokeAsync(Book.BookingStatus))">
+      @(GetStatusText(Book.BookingStatus))
+    </Button>
+    <Button Class="account-profile-upload-button"
+            Color="@Color.Secondary"
+            Variant="@ButtonVariant.Text"
+            OnClick="@(_=> DeclineBooking.InvokeAsync(Book))">
+      Decline
+    </Button>
+
+  </CardActions>
+</Card>

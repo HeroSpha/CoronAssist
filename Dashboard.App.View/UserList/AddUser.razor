@@ -1,0 +1,103 @@
+﻿@page "/uses/allusers/adduser"
+  <div class="users-root">
+    <Card Class="account-details-root">
+      <form autoComplete="off"
+            noValidate>
+        <CardHeader Subheader="The information can be edited"
+                    Title="New User" />
+        <Divider />
+        <CardContent>
+          <Grid Container
+                Spacing="@Spacing.Three">
+            <Grid Item
+                  Medium="@GridSize.Six"
+                  ExtraSmall="@GridSize.Twelve">
+              <TextField FullWidth
+                         Helper="Please specify the first name"
+                         Label="First name"
+                         OnChange="@HandleFirstNameChange"
+                         Margin="@Margin.Dense"
+                         Name="FirstName"
+                         Required="true"
+                         Value="@FirstName"
+                         Variant="@ControlVariant.Outlined" />
+            </Grid>
+            <Grid Item
+                  Medium="@GridSize.Six"
+                  ExtraSmall="@GridSize.Twelve">
+              <TextField FullWidth
+                         Helper="Please specify the last name"
+                         Label="Last name"
+                         Margin="@Margin.Dense"
+                         Name="LastName"
+                         OnChange="@HandleLastNameChange"
+                         Required="true"
+                         Value="@LastName"
+                         Variant="@ControlVariant.Outlined" />
+            </Grid>
+            <Grid Item
+                  Medium="@GridSize.Six"
+                  ExtraSmall="@GridSize.Twelve">
+              <TextField FullWidth
+                         Helper="Please specify the email"
+                         Label="Email Address"
+                         Margin="@Margin.Dense"
+                         OnChange="@HandleEmailChange"
+                         Name="Email"
+                         Required="true"
+                         Value="@Email"
+                         Variant="@ControlVariant.Outlined" />
+            </Grid>
+            <Grid Item
+                  Medium="@GridSize.Six"
+                  ExtraSmall="@GridSize.Twelve">
+              <TextField FullWidth
+                         Label="Phone Number"
+                         Margin="@Margin.Dense"
+                         Name="Phone"
+                         Required="true"
+                         Type="number"
+                         OnChange="@HandlePhoneNumberChange"
+                         Value="@PhoneNumber"
+                         Variant="@ControlVariant.Outlined" />
+            </Grid>
+            <Grid Item
+                  Medium="@GridSize.Six"
+                  ExtraSmall="@GridSize.Twelve">
+              <TextField FullWidth
+                         Helper="Please specify the address"
+                         Label="Full Address"
+                         Margin="@Margin.Dense"
+                         Name="Address"
+                         OnChange="@HandleFullAddressChange"
+                         Required="true"
+                         Value="@FullAddress"
+                         Variant="@ControlVariant.Outlined" />
+            </Grid>
+            <Grid Item
+                  Medium="@GridSize.Six"
+                  ExtraSmall="@GridSize.Twelve">
+              <TextField FullWidth
+                         Helper="Province"
+                         Label="Province"
+                         Margin="@Margin.Dense"
+                         OnChange="@HandleProvinceChange"
+                         Name="Province"
+                         Required="true"
+                         Value="@Province"
+                         Variant="@ControlVariant.Outlined" />
+            </Grid>
+          </Grid>
+        </CardContent>
+        <Divider />
+        <CardActions>
+          <Button Color="@Color.Primary"
+                  Variant="@ButtonVariant.Contained"
+                  OnClick="@AddUserAsync">
+            Save details
+          </Button>
+        </CardActions>
+      </form>
+    </Card>
+  </div>
+  

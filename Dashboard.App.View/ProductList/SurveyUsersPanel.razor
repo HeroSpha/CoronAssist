@@ -1,0 +1,14 @@
+﻿<Grid Container
+      Spacing="@Spacing.Four">
+  @foreach (var accountSurvey in AccountSurveys)
+  {
+    <Grid Item
+          Large="@GridSize.Four"
+          Small="@GridSize.Six"
+          ExtraLarge="@GridSize.Three"
+          ExtraSmall="@GridSize.Twelve">
+      <UserCard AccountSurvey="accountSurvey" ViewAccountSurvey="@ViewAccountSurvey" />
+    </Grid>
+  }
+
+</Grid>

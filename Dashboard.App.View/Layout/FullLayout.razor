@@ -1,0 +1,89 @@
+﻿@inherits LayoutComponentBase
+<MainLayout>
+  <BodyContent>
+    @Body
+  </BodyContent>
+  <ProfileContent Context="profile">
+    <Profile Class="@profile.Item1"
+             Style="@profile.Item2"
+             Name="CoronAssist"
+             Avatar="./images/avatars/avatar_11.png"
+             Bio="@State?.User?.Email">
+    </Profile>
+  </ProfileContent>
+  <NavigationContent Context="navigation">
+    <Navigation Class="@navigation.Item1"
+                Style="@navigation.Item2"
+                Items="@Items">
+    </Navigation>
+  </NavigationContent>
+  <FooterContent>
+    <Footer DomainName="Powered by Digihelp Pty Ltd"
+            DomainUrl="https://digihelpsa.co.za/"
+            Copyright="@DateTime.Now.Year.ToString()">
+      Created in response to outbreak of Corona Virus
+    </Footer>
+  </FooterContent>
+</MainLayout>
+
+@code
+{
+  private List<NavigationItem> Items = new List<NavigationItem>
+  {
+        new NavigationItem
+        {
+            Title = "Dashboard",
+            Path = "dashboard",
+            Icon = @<DashboardIcon />,
+            Prefix = false
+        },
+
+        new NavigationItem
+        {
+            Title = "Users",
+            Path =  "users",
+            Icon = @<PeopleIcon />,
+            Prefix =  true
+        },
+
+        new NavigationItem
+        {
+            Title = "Surveys",
+            Path = "surveys",
+            Icon = @<Skclusive.Material.Icon.ListIcon />,
+            Prefix = true
+        },
+
+        new NavigationItem
+        {
+            Title = "Bookings",
+            Path =  "bookings",
+            Icon = @<Skclusive.Material.Icon.MoneyIcon />,
+            Prefix =  true
+        },
+
+        new NavigationItem
+        {
+            Title = "Settings",
+            Path =  "settings",
+            Icon = @<SettingsIcon />,
+            Prefix =  true
+        },
+
+        new NavigationItem
+        {
+            Title = "FAQ",
+            Path =  "faq",
+            Icon = @<TextFieldsIcon />,
+            Prefix =  true
+        },
+
+        new NavigationItem
+        {
+            Title = "Blog",
+            Path =  "blogs",
+            Icon = @<Skclusive.Material.Icon.AssignmentIcon />,
+            Prefix =  true
+        }
+    };
+}

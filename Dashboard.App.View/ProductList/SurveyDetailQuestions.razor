@@ -1,0 +1,32 @@
+﻿<Paper Style="margin: 24px; overflow-x: auto;">
+  <Table Style="min-width: 700px;">
+    <TableHead>
+      <TableRow>
+        <TableCell>Question</TableCell>
+        <TableCell>Answers</TableCell>
+        <TableCell></TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      @foreach (var question in Questions)
+      {
+        <TableRow>
+          <TableCell><a href="#" @onclick:preventDefault @onclick="@(_=> OpenQuestionAnswers.InvokeAsync(question))">@question.SurveyQuestion</a></TableCell>
+          <TableCell>@question.Answers.Count</TableCell>
+          <TableCell>
+            <Button Color="Color.Secondary" OnClick="@(_ => DeleteQuestion.InvokeAsync(question.QuestionId))">
+              <DeleteIcon />
+            </Button>
+            <Button Color="Color.Primary" OnClick="@(_ => AddQuestionAsnwer.InvokeAsync(question.QuestionId))">
+              <AddIcon />
+            </Button>
+
+          </TableCell>
+
+        </TableRow>
+      }
+
+    </TableBody>
+  </Table>
+</Paper>
+

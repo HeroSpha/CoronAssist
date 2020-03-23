@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Shell.NavBarIsVisible="True"
+             Shell.BackgroundColor="{StaticResource DarkElevation12dp}"
+             x:Class="CoronAssist.Mobile.Views.QuestionPage">
+    <Shell.TitleView>
+        <StackLayout  HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+            <Label Text="{Binding Survey.Name}" FontSize="Large" TextColor="{StaticResource PrimaryColor}" FontFamily="{StaticResource Regular}" HorizontalOptions="StartAndExpand"  VerticalOptions="Center" />
+            <Label Text="{Binding Points, Mode=TwoWay}" HorizontalOptions="End" FontSize="Large" TextColor="{StaticResource PrimaryColor}" FontFamily="{StaticResource Regular}"  VerticalOptions="Center" />
+        </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView ItemsSource="{Binding Survey.Questions}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="True" Margin="10" IsClippedToBounds="True" Padding="3">
+                            <StackLayout>
+                                <Label Text="{Binding SurveyQuestion}" FontSize="Medium" TextColor="Black" FontFamily="{StaticResource Regular}" FontAttributes="Bold" />
+                                <CollectionView ItemsSource="{Binding Answers}"  HeightRequest="150"  SelectionMode="None" >
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ScrollView>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <CheckBox x:Name="ckAnswer" AutomationId="{Binding AnswerId}" CheckedChanged="ckAnswer_CheckedChanged" VerticalOptions="Center" />
+                                                    <Label Text="{Binding UserAnswer}" VerticalOptions="Center" />
+                                                </StackLayout>
+                                            </ScrollView>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </Frame>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Submit Test" BackgroundColor="{StaticResource PrimaryColor}" Command="{Binding SubmitCommand}" TextColor="White"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

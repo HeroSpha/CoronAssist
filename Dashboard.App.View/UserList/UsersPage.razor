@@ -1,0 +1,80 @@
+@page "/users"
+
+<div class="users-root">
+  <UsersToolbar OnAddUser="@AddUser" />
+  <div class="users-content">
+    <UsersTable Users="@Users" DeleteUser="@DeleteUser" TakeSurvey="TakeSurvey" />
+  </div>
+</div>
+@*Take answers*@
+<Dialog FullScreen
+        Open="@Open"
+        OnClose="@OnClose">
+  <AppBar Style="position: relative;">
+    <Toolbar>
+      <IconButton Edge="@IconButtonEdge.Start"
+                  Color="@Color.Inherit"
+                  OnClick="@OnClose"
+                  aria-label="close">
+        <CloseIcon />
+      </IconButton>
+      <Typography Variant="@TypographyVariant.H6"
+                  Style="flex: 1; margin-left: 16px;">
+        Close
+      </Typography>
+
+      <Typography Variant="@TypographyVariant.H6"
+                  Style="flex: 1; margin-left: 16px;">
+        @($"Points : {UserAnswers.Sum(p => p.Percentage)}")
+      </Typography>
+      <Button autofocus Color="@Color.Inherit"
+              OnClick="@SubmitSurvey">
+        Submit Survey
+      </Button>
+
+    </Toolbar>
+  </AppBar>
+
+  @foreach (var question in Survey.Questions)
+  {
+    <Card Style="max-width: 100%;">
+      <CardHeader Title="@question.SurveyQuestion"
+                  Subheader="Check were posible">
+        <AvatarContent>
+          <Avatar aria-label="recipe" Style="background-color: #f44336;">
+            C
+          </Avatar>
+        </AvatarContent>
+        <ActionContent>
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        </ActionContent>
+      </CardHeader>
+
+      <CardContent>
+        <Typography Variant="@TypographyVariant.Body2" Color="@Color.TextSecondary" Component="p">
+          <div style="display:flex">
+            @foreach (var item in question.Answers)
+            {
+
+              <form>
+                <Checkbox DefaultChecked="false"
+                          Color="@Color.Primary"
+                         
+                          Indeterminate="false"
+                          OnChange="@(_ => OnChange(item))" />
+                <label for="@item.AnswerId.ToString()" class="form-control">@item.UserAnswer</label>
+              </form>
+
+            }
+          </div>
+
+        </Typography>
+      </CardContent>
+
+
+    </Card>
+    <hr />
+  }
+</Dialog>

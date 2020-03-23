@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:icon="clr-namespace:CoronAssist.Mobile.Services"
+             Shell.BackgroundColor="{StaticResource DarkElevation12dp}"
+             x:Class="CoronAssist.Mobile.Views.SurveyDetailPage">
+    <Shell.TitleView>
+        <StackLayout>
+            <Label Text="{Binding Survey.Name}" FontSize="Large" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" />
+        </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Frame HasShadow="true" Margin="5,10" CornerRadius="10" IsClippedToBounds="True" Padding="0" BackgroundColor="{StaticResource DarkElevation12dp}">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Margin="5">
+                        <Label Text="{Binding Survey.Name}" FontFamily="{StaticResource Regular}" TextColor="{StaticResource PrimaryColor}" FontSize="Large"/>
+                        <Label Text="{Binding Survey.Description}" FontFamily="{StaticResource Regular}" FontSize="Small" TextColor="Wheat"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Orientation="Horizontal">
+                        <Image VerticalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource Glyph="{x:Static icon:IconFont.Calendar }"
+                                     FontFamily="{StaticResource MaterialFontFamily}"
+                                     Size="30"
+                                                 Color="{StaticResource PrimaryColor}"/>
+                            </Image.Source>
+                        </Image>
+                        <Label Text="{Binding Survey.CreatedOn, StringFormat='Created On {0}'}" VerticalOptions="Center" TextColor="{StaticResource PrimaryColor}" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            <StackLayout Grid.Row="1" Margin="5,10">
+                <Button Text="Start Screening Test" Command="{Binding TakeTestCommand}" CornerRadius="5" TextColor="{StaticResource PrimaryColor}" BackgroundColor="{StaticResource DarkElevation12dp}" />
+                <StackLayout>
+                    <Button Text="Screen Test Results"  BackgroundColor="White" TextColor="{StaticResource PrimaryColor}" />
+                    <Button Text="Bookings"  BackgroundColor="White" TextColor="{StaticResource PrimaryColor}" />
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

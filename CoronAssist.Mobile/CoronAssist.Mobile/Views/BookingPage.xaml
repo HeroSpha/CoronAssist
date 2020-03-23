@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:icon="clr-namespace:CoronAssist.Mobile.Services"
+             Shell.BackgroundColor="{StaticResource DarkElevation12dp}"
+             Shell.NavBarIsVisible="True"
+             x:Class="CoronAssist.Mobile.Views.BookingPage">
+    <Shell.TitleView>
+        <StackLayout>
+            <Label Text="Bookings" FontSize="Large" TextColor="White" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource Regular}" />
+        </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddBookingCommand}"  >
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icon:IconFont.Plus }"
+                                 FontFamily="{StaticResource MaterialFontFamily}"
+                                 Size="18"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar Placeholder="Search Bookings" />
+            <CollectionView ItemsSource="{Binding Bookings}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

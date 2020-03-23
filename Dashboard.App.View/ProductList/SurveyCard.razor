@@ -1,0 +1,40 @@
+<Card Class="product-card-root">
+  <CardContent>
+    <Typography
+        Align="@Align.Center"
+        GutterBottom
+        Variant="@TypographyVariant.H4">
+        @Survey.Name
+    </Typography>
+    <Typography
+        Align="@Align.Center"
+        Variant="@TypographyVariant.Body1">
+        @Survey.Description
+    </Typography>
+  </CardContent>
+  <Divider />
+  <CardActions>
+    <Grid
+        Container
+        Justify="@Justify.SpaceBetween">
+        <Grid
+            Class="product-card-stats-item"
+            Item>
+            <AccessTimeIcon Class="product-card-stats-icon" />
+            <Typography Display="@Display.Inline"
+                        Variant="@TypographyVariant.Body2">
+             Created On @Survey.CreatedOn.ToShortDateString()
+            </Typography>
+        </Grid>
+        <Grid Class="product-card-stats-item"
+              Item>
+          <Button 
+                  Variant="@ButtonVariant.Text" Color="Color.Primary" OnClick="@(_=> ViewSurvey(Survey.SurveyId))">
+            View Details <ArrowRightIcon />
+          </Button>
+        </Grid>
+        
+      </Grid>
+  </CardActions>
+</Card>
+

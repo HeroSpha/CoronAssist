@@ -1,0 +1,145 @@
+﻿@page "/surveys/allsurveys/surveydetail/{SurveyId:int}"
+@inherits MaterialComponentBase
+  <div class="products-root">
+    <SurvayDetailToolBar Title="@Survey.Name" OpenDialog="@SubmitQuestion" DeleteSurvey="@DeleteSurvey" />
+    <br/>
+    <Paper Square>
+      <Tabs Value="@Value"
+            OnChange="@HandleChange"
+            Variant="@TabsVariant.FullWidth"
+            IndicatorColor="@Color.Secondary"
+            TextColor="@Color.Secondary"
+            aria-label="icon label tabs example">
+        <Tab Label="Survey Details">
+          <IconContent>
+            <Skclusive.Material.Icon.DashboardIcon />
+          </IconContent>
+        </Tab>
+        <Tab Label="Questions">
+          <IconContent>
+            <Skclusive.Material.Icon.AssignmentIcon />
+          </IconContent>
+        </Tab>
+        <Tab Label="Users">
+          <IconContent>
+            <PeopleIcon />
+          </IconContent>
+        </Tab>
+      </Tabs>
+    </Paper>
+    @if (object.Equals(Value, 0))
+    {
+      <Typography Component="div">
+        <SurveyDetailList Survey="@Survey" />
+      </Typography>
+    }
+    else if (object.Equals(Value, 1))
+    {
+      <Typography Component="div">
+        <SurveyDetailQuestions Questions="@Survey.Questions" OpenQuestionAnswers="@OpenQuestionAnswers" DeleteQuestion="@DeleteQuestion"  AddQuestionAsnwer="@AddAnswer" />
+      </Typography>
+    }
+    else if (object.Equals(Value, 2))
+    {
+  <Typography Component="div">
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Low Risk
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <SurveyUsers AccountSurveys="@Survey.UserSurveys.Where(p => p.UserSurveyStatus == Coronassist.Web.Shared.Models.UserSurveyStatus.High).OrderBy(p => p.SurveyDate)" />
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Medium Risk
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            <SurveyUsers AccountSurveys="@Survey.UserSurveys.Where(p => p.UserSurveyStatus == Coronassist.Web.Shared.Models.UserSurveyStatus.Midium).OrderBy(p => p.SurveyDate)" />
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              High Risk
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            <SurveyUsers AccountSurveys="@Survey.UserSurveys.Where(p => p.UserSurveyStatus == Coronassist.Web.Shared.Models.UserSurveyStatus.High).OrderBy(p => p.SurveyDate)" />
+          </div>
+        </div>
+      </div>
+    </div>
+   
+  </Typography>
+    }
+
+    @*All Questions answers*@
+  <Dialog FullScreen
+          Open="@Open"
+          OnClose="@OnClose">
+    <AppBar Style="position: relative;">
+      <Toolbar>
+        <IconButton Edge="@IconButtonEdge.Start"
+                    Color="@Color.Inherit"
+                    OnClick="@OnClose"
+                    aria-label="close">
+          <CloseIcon />
+        </IconButton>
+        <Typography Variant="@TypographyVariant.H6"
+                    Style="flex: 1; margin-left: 16px;">
+          Close
+        </Typography>
+       
+      </Toolbar>
+    </AppBar>
+    <List>
+      @foreach (var answer in Answers)
+      {
+        <ListItem>
+          <ListItemText Primary="@answer.UserAnswer" Secondary="@($"{@answer.Percentage.ToString()}%")" />
+        </ListItem>
+        <Divider />
+      }
+
+
+    </List>
+  </Dialog>
+   
+  </div>
+
+
+
+   
+
+    
+
+    @code
+{
+      private object Value { set; get; } = 0;
+
+      private void HandleChange(object value)
+      {
+        Value = value;
+
+        StateHasChanged();
+      }
+    }
+

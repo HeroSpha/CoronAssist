@@ -1,0 +1,19 @@
+@page "/surveys"
+
+<div class="products-root">
+    <SurveysToolbar OnAddSurvey="AddSurvey"/>
+    <div class="products-content">
+        <SurveyPanel Surveys="@Surveys" />
+    </div>
+    <div class="products-pagination">
+        <Typography Variant="@TypographyVariant.Caption">
+            1-6 of 20
+        </Typography>
+        <IconButton>
+            <ChevronLeftIcon />
+        </IconButton>
+        <IconButton>
+            <ChevronRightIcon />
+        </IconButton>
+    </div>
+</div>

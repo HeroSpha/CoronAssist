@@ -1,0 +1,38 @@
+﻿<Card Class="account-profile-root">
+  <CardContent>
+    <div class="account-profile-details">
+      <div>
+        <Typography GutterBottom
+                    Variant="@TypographyVariant.H5">
+          @Blog.Title
+        </Typography>
+        <Typography Class="account-profile-location-text"
+                    Color="@Color.TextSecondary"
+                    Variant="@TypographyVariant.Body1">
+          @Blog.CreatedOn
+        </Typography>
+       
+      </div>
+     
+    </div>
+    <div class="account-profile-progress">
+      <Typography Variant="@TypographyVariant.Body1"> @((MarkupString)Blog.Description.Substring(0, 100))</Typography>
+
+    </div>
+  </CardContent>
+  <Divider />
+  <CardActions>
+    <Button Class="account-profile-upload-button"
+            Color="@Color.Primary"
+            Variant="@ButtonVariant.Text">
+           View Blog
+    </Button>
+    <Button Class="account-profile-upload-button"
+            Color="@Color.Secondary"
+            Variant="@ButtonVariant.Text"
+            >
+      Edit
+    </Button>
+
+  </CardActions>
+</Card>

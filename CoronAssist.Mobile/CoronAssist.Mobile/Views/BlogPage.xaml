@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Shell.BackgroundColor="{StaticResource DarkElevation12dp}"
+             Shell.NavBarIsVisible="True"
+             x:Class="CoronAssist.Mobile.Views.BlogPage">
+    <Shell.TitleView>
+        <StackLayout>
+            <Label Text="Blogs" FontSize="Large" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource Regular}" />
+        </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar Placeholder="Search blogs" />
+            <CollectionView ItemsSource="{Binding Blogs}" SelectionMode="Single" SelectedItem="{Binding Blog, Mode=TwoWay}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame Margin="5" Padding="0"  HasShadow="True" CornerRadius="5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="7*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid BackgroundColor="{StaticResource DarkElevation12dp}">
+                                        <Label Text="{Binding CreatedOn, StringFormat='{0:dd MMM}'}" MinimumWidthRequest="40" TextColor="White" FontAttributes="Bold" FontFamily="{StaticResource Regular}" HorizontalTextAlignment="Center" FontSize="Medium" Margin="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                                    </Grid>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Margin="5" Grid.Column="1">
+                                        <Label Text="{Binding Title}" FontSize="Medium" TextColor="{StaticResource PrimaryColor}" FontFamily="{StaticResource Regular}" />
+                                        <Label Text="{Binding Description}" TextType="Html" FontSize="Small" LineBreakMode="NoWrap" TextColor="{StaticResource DarkElevation12dp}" FontFamily="{StaticResource Regular}" />
+
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,24 @@
+﻿@inject NavigationManager NavigationManager
+<div class="products-toolbar-root">
+  <div class="products-toolbar-row">
+    <h3>Blogs</h3>
+    <span class="products-toolbar-spacer" />
+
+    <Button Color="@Color.Primary"
+            Variant="@ButtonVariant.Contained"
+            OnClick="@AddBlog">
+      Add
+    </Button>
+  </div>
+  <div class="products-toolbar-row">
+    <SearchInput Class="products-toolbar-search-input"
+                 Placeholder="Search Blogs" />
+  </div>
+</div>
+@code {
+    private void AddBlog()
+    {
+
+      NavigationManager.NavigateTo("blogs/addblog");
+    }
+}
