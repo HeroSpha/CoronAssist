@@ -11,7 +11,6 @@ namespace Coronassist.Web.Shared.Models
         {
             Answers = new HashSet<Answer>();
         }
-        public int MyProperty { get; set; }
         public int QuestionId { get; set; }
         public int SurveyId { get; set; }
         public string SurveyQuestion { get; set; }

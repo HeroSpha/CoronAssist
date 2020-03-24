@@ -15,7 +15,6 @@ namespace CoronAssist.Mobile.Models
         public int SurveyId { get; set; }
         public string SurveyQuestion { get; set; }
         public bool IsActive { get; set; }
-        public QuestionType QuestionType { get; set; }
         public virtual ICollection<Answer> Answers { get; set; }
         public string Other { get; set; }
         public int SelectedAnswer { get; set; }

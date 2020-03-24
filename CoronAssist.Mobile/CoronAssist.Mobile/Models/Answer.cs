@@ -12,7 +12,7 @@ namespace CoronAssist.Mobile.Models
         public double Percentage { get; set; }
         public bool IsActive { get; set; } = false;
         public int QuestionId { get; set; }
-       
+        public AnswerType AnswerType { get; set; }
         public virtual Question Question { get; set; }
        
 

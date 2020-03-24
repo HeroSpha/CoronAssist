@@ -15,11 +15,12 @@ namespace CoronAssist.Mobile.Views
     public partial class QuestionPage : ContentPage
     {
         QuestionPageViewModel viewModel;
-        public QuestionPage(Survey survey)
+        public QuestionPage(Personal personal,Survey survey)
         {
             InitializeComponent();
             BindingContext = viewModel = new QuestionPageViewModel(Navigation);
             viewModel.SetSurvey(survey);
+            viewModel.SetPersonal(personal);
         }
 
         private void ckAnswer_CheckedChanged(object sender, CheckedChangedEventArgs e)

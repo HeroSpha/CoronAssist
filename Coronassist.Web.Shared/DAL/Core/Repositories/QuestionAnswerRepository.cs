@@ -1,5 +1,6 @@
 ﻿using Coronassist.Web.Shared.DAL.Core.Interfaces;
 using Coronassist.Web.Shared.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,14 +10,14 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 {
     public class QuestionAnswerRepository : BaseRepository, IQuestionAnswerRepository
     {
-        public QuestionAnswerRepository(DatabaseService databaseService) : base(databaseService)
+        public QuestionAnswerRepository(DbContextOptions<AccountDbContext> options) : base(options)
         {
         }
 
         public async Task<bool> AddRange(List<SurveyAnswer> Answers)
         {
-            DatabaseService.accountContext.QuestionAnswers.AddRange(Answers);
-            await DatabaseService.accountContext.SaveChangesAsync();
+            accountDbContext.QuestionAnswers.AddRange(Answers);
+            await accountDbContext.SaveChangesAsync();
             return true;
         }
     }

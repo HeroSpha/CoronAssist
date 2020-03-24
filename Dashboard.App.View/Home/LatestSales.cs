@@ -30,6 +30,11 @@ namespace Skclusive.Blazor.Dashboard.App.View.Home
         protected async override void OnInitialized()
         {
             _config = await AccountSurveyRepository.GetDailyReports();
+            if (_config == null)
+            {
+                _config = new BarConfig();
+            }
+            //_config = new BarConfig();
             StateHasChanged();
         }
     }

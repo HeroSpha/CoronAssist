@@ -26,9 +26,10 @@ namespace CoronAssist.Mobile.ViewModels
         public BookingPageViewModel(INavigation _navigation) : base(_navigation)
         {
             AddBookingCommand = new Command(async () => await AddBooking());
-            if (App.User == null)
+            var token = Xamarin.Essentials.SecureStorage.GetAsync("Token").Result;
+            if (!string.IsNullOrEmpty(token))
             {
-                Shell.Current.GoToAsync("//login");
+                Shell.Current.GoToAsync("//home");
             }
         }
         private async Task AddBooking()

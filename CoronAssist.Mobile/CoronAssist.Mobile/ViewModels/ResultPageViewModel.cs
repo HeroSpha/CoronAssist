@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace CoronAssist.Mobile.ViewModels
@@ -27,8 +29,14 @@ namespace CoronAssist.Mobile.ViewModels
             get { return message; }
             set { SetProperty(ref message, value); }
         }
+        public ICommand BookAppointmentCommand { get; set; }
         public ResultPageViewModel(INavigation _navigation) : base(_navigation)
         {
+            BookAppointmentCommand = new Command(async () => await BookAppointment());
+        }
+        private async Task BookAppointment()
+        {
+            await Shell.Current.GoToAsync("//booking/addbooking");
         }
         public void SetResult(UserSurveyStatus userSurveyStatus)
         {

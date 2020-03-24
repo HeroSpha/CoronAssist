@@ -17,6 +17,8 @@ namespace CoronAssist.Mobile.ViewModels
 {
     public class QuestionPageViewModel : BaseViewModel
     {
+        public ICollection<SurveyAnswer> SurveyAnswers { get; set; } 
+        public Personal Personal { get; set; }
         private double points;
         public double Points
         {
@@ -41,6 +43,7 @@ namespace CoronAssist.Mobile.ViewModels
         }
         public QuestionPageViewModel(INavigation _navigation) : base(_navigation)
         {
+            SurveyAnswers =  new HashSet<SurveyAnswer>();
             Answers = new ObservableCollection<Answer>();
             Answers.CollectionChanged += Answers_CollectionChanged;
             SubmitCommand = new Command(async() => await Submit());
@@ -68,25 +71,26 @@ namespace CoronAssist.Mobile.ViewModels
                             Risk = Answers.Sum(p => p.Percentage),
                             SurveyId = Survey.SurveyId,
                             UserSurveyStatus = GetStatus(Points),
-                            Id = "f6df05cb-ca34-44ef-a13e-e26807485522" /*App.User.Id*/
+                            Id = App.User.Id,
+                            Fullname = Personal.Fullname,
+                            PhoneNumber = Personal.PhoneNumber,
+                            Address = Personal.EmailAddres,
+                            EmailAddress = Personal.EmailAddres,
+                            Age = Personal.Age,
+                            MedicalAidNumber = Personal.MedicalAidNumber
                         })
                         .ReceiveJson<AccountSurvey>();
                        
                     if (accountSurvey != null)
                     {
-                        var queastionAnswers = new List<SurveyAnswer>();
-                        foreach (var answer in Answers)
+                       
+                        foreach (var answer in SurveyAnswers)
                         {
-                            queastionAnswers.Add(new SurveyAnswer
-                            {
-                                Answer = answer.UserAnswer,
-                                AccountSurveyId = accountSurvey.AccountSurveyId,
-                                Question = answer.Question.SurveyQuestion
-                            });
+                            answer.AccountSurveyId = accountSurvey.AccountSurveyId;
                         }
                         var _answer = await ServerPath.Path
                             .AppendPathSegment("api/surveyanswers/addsurveyanswers")
-                            .PostJsonAsync(queastionAnswers)
+                            .PostJsonAsync(SurveyAnswers)
                             .ReceiveJson<bool>();
                         if(_answer)
                         {
@@ -121,14 +125,44 @@ namespace CoronAssist.Mobile.ViewModels
             else
                 return UserSurveyStatus.High;
         }
+        public void SetPersonal(Personal personal)
+        {
+            this.Personal = personal;
+        }
         public void SetSurvey(Survey survey)
         {
             this.Survey = survey;
         }
-        public void SetPoints(int answerId)
+        public async void SetPoints(int answerId)
         {
             var Availableanswer = Survey.Questions.SelectMany(ans => ans.Answers).FirstOrDefault(_answer =>_answer.AnswerId == answerId);
             var answer = Answers.FirstOrDefault(p => p.AnswerId == answerId);
+
+            if(Availableanswer != null && Availableanswer.AnswerType == AnswerType.Yes)
+            {
+                var _av = SurveyAnswers.FirstOrDefault(p => p.Answer == Availableanswer.UserAnswer);
+                if(_av == null)
+                {
+                    var flight = await SetFlight();
+                    var _surveyAnswer = new SurveyAnswer
+                    {
+                        Answer = Availableanswer.UserAnswer,
+                        Question = Availableanswer.Question.SurveyQuestion,
+                        FlightDetail = new FlightDetail
+                        {
+                            DepartureDate = flight.DepartureDate,
+                            ArrivalDate = flight.ArrivalDate,
+                            FlightNumber = flight.FlightNumber
+                        }
+                    };
+                    SurveyAnswers.Add(_surveyAnswer);
+                }
+                else
+                {
+                    SurveyAnswers.Remove(_av);
+                }
+               
+            }
             if(answer != null)
             {
                 Answers.Remove(answer);
@@ -137,6 +171,18 @@ namespace CoronAssist.Mobile.ViewModels
             {
                 Answers.Add(Availableanswer);
             }
+        }
+        private async Task<FlightDetail> SetFlight()
+        {
+            var flightDetails = new FlightDetail();
+            var _departureDate = await UserDialogs.Instance.DatePromptAsync("Departure Date");
+            flightDetails.DepartureDate = _departureDate.SelectedDate;
+            var _arrivalDate = await UserDialogs.Instance.DatePromptAsync("Arrival Date");
+            flightDetails.ArrivalDate = _arrivalDate.SelectedDate;
+             var flightNumber = await UserDialogs.Instance.PromptAsync("", "Flight number", "Ok", "Cancel", "Enter flight number", InputType.Default, null);
+            flightDetails.FlightNumber = flightNumber.Text;
+            return flightDetails;
+           
         }
         
     }

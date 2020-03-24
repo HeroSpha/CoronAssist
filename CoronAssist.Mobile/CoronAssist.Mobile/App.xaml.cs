@@ -15,6 +15,7 @@ namespace CoronAssist.Mobile
         {
             InitializeComponent();
             var token = Xamarin.Essentials.SecureStorage.GetAsync("Token").Result;
+           
             MainPage = new AppShell();
 
             // MainPage = new NavigationPage(new LoginPage());

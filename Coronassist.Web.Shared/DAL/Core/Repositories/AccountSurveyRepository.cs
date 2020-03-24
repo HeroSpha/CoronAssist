@@ -20,7 +20,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 {
     public class AccountSurveyRepository : BaseRepository, IAccountSurveyRepository
     {
-        public AccountSurveyRepository(DatabaseService databaseService) : base(databaseService)
+        public AccountSurveyRepository(DbContextOptions<AccountDbContext> options) : base(options)
         {
         }
 
@@ -28,8 +28,8 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var _add = await DatabaseService.accountContext.AccountSurveys.AddAsync(accountSurvey);
-                await DatabaseService.accountContext.SaveChangesAsync();
+                var _add = await accountDbContext.AccountSurveys.AddAsync(accountSurvey);
+                await accountDbContext.SaveChangesAsync();
                 return _add.Entity;
             }
             catch (Exception)
@@ -43,8 +43,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var _accountSurvey = await DatabaseService
-                    .accountContext
+                var _accountSurvey = await accountDbContext
                     .AccountSurveys.Include(f => f.Survey)
                     .Include(f => f.Account)
                     .FirstOrDefaultAsync(p => p.AccountSurveyId == accountSurveyId);
@@ -185,41 +184,9 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
             };
             //Get grouped surveys by dates
             var bars = new List<BarDataset<DoubleWrapper>>();
-            //var reports = await DatabaseService.accountContext.AccountSurveys
-            //    .ToListAsync();
-            var reports = new List<AccountSurvey>()
-            {
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.High},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-10), UserSurveyStatus = UserSurveyStatus.Midium},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-9), UserSurveyStatus = UserSurveyStatus.Low},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-8), UserSurveyStatus = UserSurveyStatus.Low},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-8), UserSurveyStatus = UserSurveyStatus.High},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-8), UserSurveyStatus = UserSurveyStatus.Midium},
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.Low},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-5), UserSurveyStatus = UserSurveyStatus.Midium},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-1), UserSurveyStatus = UserSurveyStatus.Low},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-3), UserSurveyStatus = UserSurveyStatus.Midium},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-4), UserSurveyStatus = UserSurveyStatus.High},
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.Low},
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.High},
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.High},
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.Low},
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.High},
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.Midium},
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.High},
-                  new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-8), UserSurveyStatus = UserSurveyStatus.Midium},
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.Low},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-1), UserSurveyStatus = UserSurveyStatus.Midium},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-7), UserSurveyStatus = UserSurveyStatus.Low},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-7), UserSurveyStatus = UserSurveyStatus.Midium},
-                new AccountSurvey { SurveyDate = DateTime.Now.AddDays(-6), UserSurveyStatus = UserSurveyStatus.High},
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.Low},
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.High},
-                new AccountSurvey { SurveyDate = DateTime.Now, UserSurveyStatus = UserSurveyStatus.High}
-
-
-            };
-                
+            var reports = await accountDbContext.AccountSurveys
+                .ToListAsync();
+           
             //Grouped by dates
             var groupedDates = reports.OrderBy(p => p.SurveyDate)
                 .GroupBy(p => p.SurveyDate.ToString("MMMM dd"))
@@ -282,7 +249,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 
         public async Task<(double low, double mid, double high)> GetDoughartData()
         {
-            //var reports = await DatabaseService.accountContext.AccountSurveys.Where(p => p.SurveyDate.ToShortDateString() == DateTime.Now.ToShortDateString()).ToListAsync();
+            //var reports = await accountDbContext.AccountSurveys.Where(p => p.SurveyDate.ToShortDateString() == DateTime.Now.ToShortDateString()).ToListAsync();
 
             var reports = new List<AccountSurvey>()
             {

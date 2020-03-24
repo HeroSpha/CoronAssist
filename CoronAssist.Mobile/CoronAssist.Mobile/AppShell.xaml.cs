@@ -12,7 +12,8 @@ namespace CoronAssist.Mobile
         {
             InitializeComponent();
             Routing.RegisterRoute("registration", typeof(RegisterPage));
-            
+            Routing.RegisterRoute("addbooking", typeof(AddBookingPage));
+
         }
     }
 }

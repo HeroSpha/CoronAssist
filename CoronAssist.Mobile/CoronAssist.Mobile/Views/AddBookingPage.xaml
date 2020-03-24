@@ -4,29 +4,43 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Visual="Material"
              Shell.BackgroundColor="{StaticResource DarkElevation12dp}"
              x:Class="CoronAssist.Mobile.Views.AddBookingPage">
     <Shell.TitleView>
-        <StackLayout>
-            <Label Text="New Booking" TextColor="{StaticResource PrimaryColor}" FontSize="Large" VerticalOptions="CenterAndExpand"/>
+        <StackLayout VerticalOptions="CenterAndExpand" Margin="10">
+            <Label VerticalOptions="CenterAndExpand" FontSize="Large">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="CORON" TextColor="{StaticResource SecondaryColor}" />
+                        <Span Text="ASSIST" TextColor="{StaticResource PrimaryColor}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.Content>
-        <StackLayout Margin="10">
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Choose a date for test" FontFamily="{StaticResource Regular}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" />
-                <DatePicker Date="{Binding BookDate, Mode=TwoWay}" MinimumDate="{Binding MinDate}"  VerticalOptions="CenterAndExpand" />
+        <ScrollView>
+            <StackLayout Margin="10">
+                <Label Text="Book Appointment" FontSize="Large" FontFamily="{StaticResource Regular}" TextColor="{StaticResource DarkElevation12dp}"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Choose a date for test" FontFamily="{StaticResource Regular}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" />
+                    <DatePicker Date="{Binding BookDate, Mode=TwoWay}"  MinimumDate="{Binding MinDate}"  VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Choose time test" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource Regular}" HorizontalOptions="StartAndExpand"/>
+                    <TimePicker VerticalOptions="CenterAndExpand" Time="{Binding Time, Mode=OneWay}"></TimePicker>
+                </StackLayout>
+                <Entry Text="{Binding PatientName, Mode=TwoWay}" Placeholder="Patient name" />
+                <Entry Text="{Binding PhoneNumber, Mode=TwoWay}" Placeholder="Phone number" />
+                <Entry Text="{Binding EmailAdress, Mode=TwoWay}" Placeholder="Email Address" />
+                <Entry Text="{Binding Address, Mode=TwoWay}" Placeholder="Residential address" />
+                <StackLayout>
+                    <Label Text="Booking Price: R500" FontSize="Medium" FontFamily="{StaticResource Regular}" TextColor="{StaticResource PrimaryColor}" />
+                    <Label Text="Booking fee is required" TextColor="{StaticResource DarkElevation12dp}"/>
+                </StackLayout>
+                <Button Text="Book Appointment" BackgroundColor="{StaticResource DarkElevation12dp}" CornerRadius="5" Command="{Binding SubmitCommand}" TextColor="{StaticResource PrimaryColor}"></Button>
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Choose time test" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource Regular}" HorizontalOptions="StartAndExpand"/>
-                <TimePicker VerticalOptions="CenterAndExpand"></TimePicker>
-            </StackLayout>
-            <Entry Text="{Binding Address, Mode=TwoWay}" Placeholder="Residential address" />
-            <StackLayout>
-                <Label Text="Booking Price: R500" FontSize="Medium" FontFamily="{StaticResource Regular}" TextColor="{StaticResource PrimaryColor}" />
-                <Label Text="Booking fee is required upon booking" TextColor="{StaticResource DarkElevation12dp}"/>
-            </StackLayout>
-            <Button Text="Book Appointment" BackgroundColor="{StaticResource DarkElevation12dp}" Command="{Binding SubmitCommand}" TextColor="{StaticResource PrimaryColor}"></Button>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

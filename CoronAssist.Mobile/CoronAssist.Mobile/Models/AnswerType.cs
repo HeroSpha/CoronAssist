@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CoronAssist.Mobile.Models
 {
-    public enum QuestionType
+    public enum AnswerType
     {
         Yes,
         No

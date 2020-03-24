@@ -20,6 +20,9 @@
             <Button Color="Color.Primary" OnClick="@(_ => AddQuestionAsnwer.InvokeAsync(question.QuestionId))">
               <AddIcon />
             </Button>
+            <Button Color="Color.Secondary" OnClick="@(_ => AddQuestionDetailAsnwer.InvokeAsync(question.QuestionId))">
+              <AddIcon />
+            </Button>
 
           </TableCell>
 

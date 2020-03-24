@@ -44,12 +44,10 @@ namespace CoronAssist.Mobile.ViewModels
             try
             {
                 UserDialogs.Instance.ShowLoading();
-                Blogs = new ObservableCollection<Blog>(await ServerPath.Path.AppendPathSegment("api/blogs/getblogs").GetJsonAsync<List<Blog>>());
+                Blogs = new ObservableCollection<Blog>(await ServerPath.Path.AppendPathSegment("api/blogs/getblogs").AllowAnyHttpStatus().GetJsonAsync<List<Blog>>());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
             }
             finally
             {

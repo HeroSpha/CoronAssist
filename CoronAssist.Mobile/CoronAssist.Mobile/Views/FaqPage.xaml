@@ -9,7 +9,7 @@
              x:Class="CoronAssist.Mobile.Views.FaqPage">
     <Shell.TitleView>
         <StackLayout VerticalOptions="CenterAndExpand">
-            <Label VerticalOptions="CenterAndExpand" FontSize="Large">
+            <Label VerticalOptions="CenterAndExpand" FontSize="Large" >
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="CORON" TextColor="{StaticResource SecondaryColor}" />
@@ -21,7 +21,7 @@
     </Shell.TitleView>
     <ContentPage.Content>
         <ScrollView>
-            <Label Text="{Binding Faq.Description}" TextType="Html" FontSize="Medium" />
+            <Label Text="{Binding Faq.Description}" TextType="Html" FontSize="Medium" Margin="10" />
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoronAssist.Mobile.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace CoronAssist.Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilePage : ContentPage
     {
+        ProfilePageViewModel viewModel;
         public ProfilePage()
         {
             InitializeComponent();
+            BindingContext = viewModel = new ProfilePageViewModel(Navigation);
         }
     }
 }

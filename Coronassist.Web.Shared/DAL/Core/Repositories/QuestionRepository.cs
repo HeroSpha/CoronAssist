@@ -13,7 +13,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 {
     public class QuestionRepository : BaseRepository, IQuestionRepository
     {
-        public QuestionRepository(DatabaseService databaseService) : base(databaseService)
+        public QuestionRepository(DbContextOptions<AccountDbContext> options) : base(options)
         {
         }
 
@@ -21,18 +21,18 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var q = await DatabaseService.accountContext.Questions.FirstOrDefaultAsync(p => p.QuestionId == question.QuestionId);
+                var q = await accountDbContext.Questions.FirstOrDefaultAsync(p => p.QuestionId == question.QuestionId);
                 if (q != null)
                 {
                     q.SurveyQuestion = question.SurveyQuestion;
-                    DatabaseService.accountContext.Questions.Update(q);
-                    await DatabaseService.accountContext.SaveChangesAsync();
+                    accountDbContext.Questions.Update(q);
+                    await accountDbContext.SaveChangesAsync();
                     return q;
                 }
                 else
                 {
-                    var _question = await DatabaseService.accountContext.Questions.AddAsync(question);
-                    await DatabaseService.accountContext.SaveChangesAsync();
+                    var _question = await accountDbContext.Questions.AddAsync(question);
+                    await accountDbContext.SaveChangesAsync();
                     return _question.Entity;
                 }
             }
@@ -47,11 +47,11 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var q = await DatabaseService.accountContext.Questions.FirstOrDefaultAsync(p => p.QuestionId == QuestionId);
+                var q = await accountDbContext.Questions.FirstOrDefaultAsync(p => p.QuestionId == QuestionId);
                 if (q != null)
                 {
-                    DatabaseService.accountContext.Remove(q);
-                    await DatabaseService.accountContext.SaveChangesAsync();
+                    accountDbContext.Remove(q);
+                    await accountDbContext.SaveChangesAsync();
                     return true;
                 }
                 else
@@ -68,7 +68,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var questions = await DatabaseService.accountContext.Questions
+                var questions = await accountDbContext.Questions
                     .Include(f => f.Answers)
                     .Include(f => f.Survey)
                     .Where(p => p.SurveyId == surveyId).ToListAsync();

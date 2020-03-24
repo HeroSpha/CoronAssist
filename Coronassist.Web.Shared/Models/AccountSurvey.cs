@@ -24,6 +24,10 @@ namespace Coronassist.Web.Shared.Models
         public virtual ApplicationUser Account { get; set; }
         [ForeignKey("SurveyId")]
         public virtual Survey Survey { get; set; }
+        public string Fullname { get; set; }
+        public string PhoneNumber { get; set; }
+        public string MedicalNumber { get; set; }
+        public int Age { get; set; }
         public virtual ICollection<SurveyAnswer> QuestionAnswers { get; set; }
     }
 }

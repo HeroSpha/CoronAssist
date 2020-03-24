@@ -10,7 +10,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 {
     public class FaqRepository : BaseRepository, IFaqRepository
     {
-        public FaqRepository(DatabaseService databaseService) : base(databaseService)
+        public FaqRepository(DbContextOptions<AccountDbContext> options) : base(options)
         {
         }
 
@@ -18,18 +18,18 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var _faq = await DatabaseService.accountContext.Faqs.FirstOrDefaultAsync(p => p.FaqId == faq.FaqId);
+                var _faq = await accountDbContext.Faqs.FirstOrDefaultAsync(p => p.FaqId == faq.FaqId);
                 if(_faq != null)
                 {
                     _faq.Description = faq.Description;
-                     DatabaseService.accountContext.Faqs.Update(_faq);
-                    await DatabaseService.accountContext.SaveChangesAsync();
+                     accountDbContext.Faqs.Update(_faq);
+                    await accountDbContext.SaveChangesAsync();
                     return _faq;
                 }
                 else
                 {
-                    var faqEntity = await DatabaseService.accountContext.Faqs.AddAsync(faq);
-                    await DatabaseService.accountContext.SaveChangesAsync();
+                    var faqEntity = await accountDbContext.Faqs.AddAsync(faq);
+                    await accountDbContext.SaveChangesAsync();
                     return faqEntity.Entity;
                 }
                
@@ -45,7 +45,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var faq = await DatabaseService.accountContext.Faqs.FirstOrDefaultAsync();
+                var faq = await accountDbContext.Faqs.FirstOrDefaultAsync();
                 return faq;
             }
             catch (Exception)

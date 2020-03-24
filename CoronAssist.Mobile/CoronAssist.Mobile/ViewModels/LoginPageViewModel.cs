@@ -31,6 +31,31 @@ namespace CoronAssist.Mobile.ViewModels
         {
             LoginCommand = new Command(async () => await LoginAsync());
             RegisterCommand = new Command(async () => await RegisterAsync());
+            var token = Xamarin.Essentials.SecureStorage.GetAsync("Token").Result;
+            if(!string.IsNullOrEmpty(token))
+            {
+                Shell.Current.GoToAsync("//home");
+                GetUser();
+            }
+        }
+        private async void GetUser()
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                var Id = Xamarin.Essentials.SecureStorage.GetAsync("Id").Result;
+                App.User = await ServerPath.Path
+                    .AppendPathSegment($"api/accounts/getuser/{Id}")
+                    .GetJsonAsync<ApplicationUser>();
+            }
+            catch (Exception)
+            {
+                await UserDialogs.Instance.AlertAsync("Try and login again.");
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+            }
         }
         private async Task RegisterAsync()
         {

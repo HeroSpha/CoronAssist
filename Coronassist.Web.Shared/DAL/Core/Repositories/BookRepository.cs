@@ -11,7 +11,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 {
     public class BookRepository : BaseRepository, IBookRepository
     {
-        public BookRepository(DatabaseService databaseService) : base(databaseService)
+        public BookRepository(DbContextOptions<AccountDbContext> options) : base(options)
         {
         }
 
@@ -19,7 +19,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var booking = await DatabaseService.accountContext.Books.FirstOrDefaultAsync(p => p.AccountBookId == accountBook.AccountBookId);
+                var booking = await accountDbContext.Books.FirstOrDefaultAsync(p => p.AccountBookId == accountBook.AccountBookId);
                 //Update
                 if(booking != null)
                 {
@@ -31,8 +31,8 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
                 else
                 {
                     //insert
-                    var book = await DatabaseService.accountContext.Books.AddAsync(accountBook);
-                    await DatabaseService.accountContext.SaveChangesAsync();
+                    var book = await accountDbContext.Books.AddAsync(accountBook);
+                    await accountDbContext.SaveChangesAsync();
                     return book.Entity;
                 }
                 
@@ -48,7 +48,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 
         public async Task<List<Book>> GetBookings()
         {
-            var books = await DatabaseService.accountContext.Books.ToListAsync();
+            var books = await accountDbContext.Books.ToListAsync();
             return books.Select(book => new Book
             {
                 BookDate = book.BookDate,
@@ -63,7 +63,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 
         public async Task<int> TotalBookings()
         {
-            return DatabaseService.accountContext.Books.Count();
+            return accountDbContext.Books.Count();
         }
     }
 }

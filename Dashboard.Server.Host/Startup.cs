@@ -97,7 +97,7 @@ namespace Skclusive.Blazor.Dashboard.Server.Host
             services.AddServerSideBlazor();
             services.AddControllersWithViews();
             services.AddDashboardView(new LayoutConfigBuilder().WithResponsive(true).Build());
-            services.AddTransient<DatabaseService>(Factory);
+            // services.AddTransient<DatabaseService>(Factory);
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IAccountSurveyRepository, AccountSurveyRepository>();
             services.AddScoped<IAnswerRepository, AnswerRepository>();
@@ -108,16 +108,17 @@ namespace Skclusive.Blazor.Dashboard.Server.Host
             services.AddScoped<IQuestionAnswerRepository, QuestionAnswerRepository>();
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<IFaqRepository, FaqRepository>();
+            services.AddScoped<IFlightDetailRepository, FlightDetailRepository>();
             //services.AddScoped<SweetAlertService>();
             //services.AddSweetAlert2();
         }
-        private DatabaseService Factory(IServiceProvider arg)
-        {
-            var con = Configuration["ConnectionString"];
-            var optionsBuilder = new DbContextOptionsBuilder<AccountDbContext>();
-            optionsBuilder.UseSqlServer(con);
-            return new DatabaseService(optionsBuilder.Options);
-        }
+        //private DatabaseService Factory(IServiceProvider arg)
+        //{
+        //    var con = Configuration["ConnectionString"];
+        //    var optionsBuilder = new DbContextOptionsBuilder<AccountDbContext>();
+        //    optionsBuilder.UseSqlServer(con);
+        //    return new DatabaseService(optionsBuilder.Options);
+        //}
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

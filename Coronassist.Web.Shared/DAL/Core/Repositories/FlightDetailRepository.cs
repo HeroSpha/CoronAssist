@@ -1,5 +1,6 @@
 ﻿using Coronassist.Web.Shared.DAL.Core.Interfaces;
 using Coronassist.Web.Shared.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 {
     public class FlightDetailRepository : BaseRepository, IFlightDetailRepository
     {
-        public FlightDetailRepository(DatabaseService databaseService) : base(databaseService)
+        public FlightDetailRepository(DbContextOptions<AccountDbContext> options) : base(options)
         {
         }
 
@@ -17,8 +18,8 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var _flight = await DatabaseService.accountContext.FlightDetails.AddAsync(flightDetail);
-                await DatabaseService.accountContext.SaveChangesAsync();
+                var _flight = await accountDbContext.FlightDetails.AddAsync(flightDetail);
+                await accountDbContext.SaveChangesAsync();
                 return _flight.Entity;
             }
             catch (Exception)

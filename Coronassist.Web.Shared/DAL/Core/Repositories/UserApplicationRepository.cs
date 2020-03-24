@@ -117,8 +117,17 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 
         public async Task<ApplicationUser> GetById(string username)
         {
-            var account = await UserManager.FindByNameAsync(username);
-            return account;
+            var account = await UserManager.FindByIdAsync(username);
+            return new ApplicationUser
+            {
+                FullAddress = account.FullAddress,
+                Province = account.Province,
+                PhoneNumber = account.PhoneNumber,
+                Email = account.Email,
+                Fullname = account.Fullname,
+                Id = account.Id
+               
+            };
         }
 
         public async Task<List<ApplicationUser>> GetUsersByRoleAsync(string role)

@@ -5,8 +5,7 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <AssemblyName>Skclusive.Blazor.Dashboard.Browser.Host</AssemblyName>
     <RootNamespace>Skclusive.Blazor.Dashboard.Browser.Host</RootNamespace>
-    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
-    <BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
+    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

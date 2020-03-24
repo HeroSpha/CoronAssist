@@ -46,5 +46,18 @@ namespace Skclusive.Blazor.Dashboard.Server.Host.Controllers
                 throw;
             }
         }
+        [HttpGet("getuser/{id}")]
+        public async Task<IActionResult> GetUser(string id)
+        {
+            try
+            {
+                return Ok(await ApplicationUserRepository.GetById(id));
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

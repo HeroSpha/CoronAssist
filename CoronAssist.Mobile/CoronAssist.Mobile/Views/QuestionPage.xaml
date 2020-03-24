@@ -14,7 +14,7 @@
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="10">
             <CollectionView ItemsSource="{Binding Survey.Questions}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -39,7 +39,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Text="Submit Test" BackgroundColor="{StaticResource PrimaryColor}" Command="{Binding SubmitCommand}" TextColor="White"></Button>
+            <Button Text="Submit Test" BackgroundColor="{StaticResource DarkElevation12dp}" Command="{Binding SubmitCommand}" TextColor="{StaticResource PrimaryColor}" CornerRadius="5"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

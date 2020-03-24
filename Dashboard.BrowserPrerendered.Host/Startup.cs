@@ -76,9 +76,7 @@ namespace Skclusive.Blazor.Dashboard.BrowserPrerendered.Host
            .AddEntityFrameworkStores<AccountDbContext>()
            .AddDefaultTokenProviders();
 
-            //var appSettingsSection = Configuration.GetSection("Jwt");
-            //services.Configure<AppSettings>(appSettingsSection);
-            //var appSettings = appSettingsSection.Get<AppSettings>();
+       
             SecretKey = Encoding.ASCII.GetBytes(Configuration["SigningKey"]);
 
             services.AddAuthentication(x =>
@@ -101,7 +99,7 @@ namespace Skclusive.Blazor.Dashboard.BrowserPrerendered.Host
                };
            });
 
-            services.AddTransient<DatabaseService>(Factory);
+         
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IAccountSurveyRepository, AccountSurveyRepository>();
             services.AddScoped<IAnswerRepository, AnswerRepository>();
@@ -112,14 +110,7 @@ namespace Skclusive.Blazor.Dashboard.BrowserPrerendered.Host
             services.AddScoped<IQuestionAnswerRepository, QuestionAnswerRepository>();
             services.AddDashboardView(new LayoutConfigBuilder().WithResponsive(true).Build());
         }
-        private DatabaseService Factory(IServiceProvider arg)
-        {
-            var con = Configuration["ConnectionString"];
-            var optionsBuilder = new DbContextOptionsBuilder<AccountDbContext>();
-            optionsBuilder.UseSqlServer(con);
-            return new DatabaseService(optionsBuilder.Options);
-        }
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseResponseCompression();

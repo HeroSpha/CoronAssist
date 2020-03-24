@@ -8,8 +8,15 @@
              Shell.NavBarIsVisible="True"
              x:Class="CoronAssist.Mobile.Views.BlogPage">
     <Shell.TitleView>
-        <StackLayout>
-            <Label Text="Blogs" FontSize="Large" TextColor="{StaticResource PrimaryColor}" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource Regular}" />
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label VerticalOptions="CenterAndExpand" FontSize="Large" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="CORON" TextColor="{StaticResource SecondaryColor}" />
+                        <Span Text="ASSIST" TextColor="{StaticResource PrimaryColor}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.Content>

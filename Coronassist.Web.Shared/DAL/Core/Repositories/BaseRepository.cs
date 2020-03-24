@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,10 +7,10 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 {
     public class BaseRepository
     {
-        public DatabaseService DatabaseService { get; set; }
-        public BaseRepository(DatabaseService databaseService)
+        public AccountDbContext accountDbContext { get; set; }
+        public BaseRepository(DbContextOptions<AccountDbContext> options)
         {
-            DatabaseService = databaseService;
+            accountDbContext  = new AccountDbContext(options);
         }
     }
 }

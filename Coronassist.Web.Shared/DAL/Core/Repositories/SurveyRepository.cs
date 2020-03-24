@@ -13,25 +13,25 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 {
     public class SurveyRepository : BaseRepository, ISurveyRepository
     {
-        public SurveyRepository(DatabaseService databaseService) : base(databaseService)
+        public SurveyRepository(DbContextOptions<AccountDbContext> options) : base(options)
         {
         }
 
         public async Task<Survey> AddSurvey(Survey survey)
         {
-            var _survey = await DatabaseService.accountContext.Surveys.FirstOrDefaultAsync(p => p.SurveyId == survey.SurveyId);
+            var _survey = await accountDbContext.Surveys.FirstOrDefaultAsync(p => p.SurveyId == survey.SurveyId);
             if(_survey != null)
             {
                 _survey.Description = survey.Description;
                 _survey.Name = survey.Name;
-                DatabaseService.accountContext.Surveys.Update(_survey);
-                await DatabaseService.accountContext.SaveChangesAsync();
+                accountDbContext.Surveys.Update(_survey);
+                await accountDbContext.SaveChangesAsync();
                 return _survey;
             }
             else
             {
-                var sur = await DatabaseService.accountContext.Surveys.AddAsync(survey);
-                 await DatabaseService.accountContext.SaveChangesAsync();
+                var sur = await accountDbContext.Surveys.AddAsync(survey);
+                 await accountDbContext.SaveChangesAsync();
                 return sur.Entity;
             }
         }
@@ -40,11 +40,11 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var _survey = await DatabaseService.accountContext.Surveys.FirstOrDefaultAsync(p => p.SurveyId == surveyId);
+                var _survey = await accountDbContext.Surveys.FirstOrDefaultAsync(p => p.SurveyId == surveyId);
                 if (_survey == null)
                     return false;
-                DatabaseService.accountContext.Surveys.Remove(_survey);
-                await DatabaseService.accountContext.SaveChangesAsync();
+                accountDbContext.Surveys.Remove(_survey);
+                await accountDbContext.SaveChangesAsync();
                 return true;
             }
             catch (Exception)
@@ -60,7 +60,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var survey = await DatabaseService.accountContext.Surveys
+                var survey = await accountDbContext.Surveys
                     .Include(f => f.Questions).ThenInclude(f => f.Answers)
                     .Include(f => f.UserSurveys).ThenInclude(f => f.Account)
                     .FirstOrDefaultAsync(p => p.SurveyId == SurveyId);
@@ -82,6 +82,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
                             AnswerId = answer.AnswerId,
                             UserAnswer = answer.UserAnswer,
                             IsActive = answer.IsActive,
+                            AnswerType = answer.AnswerType,
                             Percentage = answer.Percentage,
                             QuestionId = answer.QuestionId,
                             Question = new Question
@@ -114,7 +115,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 
         public async Task<List<Survey>> GetSurveys()
         {
-            var surveys = await DatabaseService.accountContext.Surveys.ToListAsync();
+            var surveys = await accountDbContext.Surveys.ToListAsync();
             return surveys.Select(survey => new Survey
             {
                 Name = survey.Name,

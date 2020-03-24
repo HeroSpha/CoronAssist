@@ -25,6 +25,8 @@ namespace Skclusive.Blazor.Dashboard.App.View.ProductList
         [Parameter]
         public EventCallback<int> AddQuestionAsnwer { get; set; }
         [Parameter]
+        public EventCallback<int> AddQuestionDetailAsnwer { get; set; }
+        [Parameter]
         public EventCallback<Question> OpenQuestionAnswers { get; set; }
         private void OnClose()
         {

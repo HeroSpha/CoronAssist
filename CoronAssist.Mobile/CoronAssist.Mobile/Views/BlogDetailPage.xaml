@@ -14,7 +14,7 @@
     </Shell.TitleView>
     <ContentPage.Content>
         <ScrollView>
-            <Label Text="{Binding Blog.Description}" TextType="Html" />
+            <Label Text="{Binding Blog.Description}" TextType="Html" Margin="10" />
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

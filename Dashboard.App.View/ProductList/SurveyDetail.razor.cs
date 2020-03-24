@@ -57,21 +57,27 @@ namespace Skclusive.Blazor.Dashboard.App.View.ProductList
 
         private async void SubmitQuestion()
         {
-           var _question = await SweetAlertMessage.InputDialog(type: "textarea",PlaceholderText: "Type your survey question here....");
-            if(!string.IsNullOrEmpty(_question))
-            {
-                var question = await QuestionRepository.AddQuestionAsync(new Coronassist.Web.Shared.Models.Question
-                {
-                    SurveyQuestion = _question,
-                    IsActive = true,
-                    SurveyId = SurveyId
-                });
-               
-                this.Survey.Questions.Add(question);
-                Open = false;
-                StateHasChanged();
-            }
 
+           Task task =   Task.Run(async () =>
+            {
+                var _question = await SweetAlertMessage.InputDialog(type: "textarea", PlaceholderText: "Type your survey question here....");
+                if (!string.IsNullOrEmpty(_question))
+                {
+                    var question = await QuestionRepository.AddQuestionAsync(new Coronassist.Web.Shared.Models.Question
+                    {
+                        SurveyQuestion = _question,
+                        IsActive = true,
+                        SurveyId = SurveyId
+
+                    });
+
+                    this.Survey.Questions.Add(question);
+                    await SweetAlertMessage.SuccessMessage();
+                    Open = false;
+                    StateHasChanged();
+                }
+            });
+           
            
         }
         
@@ -90,18 +96,19 @@ namespace Skclusive.Blazor.Dashboard.App.View.ProductList
         private async void AddAnswer(int QuestionId)
         {
             var answer = await SweetAlertMessage.InputDialog(type: "textarea", PlaceholderText: "Type your survey answer here....");
-            if(!string.IsNullOrEmpty(answer))
+            if (!string.IsNullOrEmpty(answer))
             {
                 var percentage = await SweetAlertMessage.RiskWeight();
                 var confirm = await SweetAlertMessage.ConfirmDialogAsync(Text: "Add this answe to the question.");
-                if(confirm != null)
+                if (confirm != null)
                 {
                     var _answer = await AnswerRepository.AddAnswer(new Answer
                     {
                         QuestionId = QuestionId,
                         IsActive = true,
                         Percentage = double.Parse(percentage),
-                        UserAnswer = answer
+                        UserAnswer = answer,
+                        AnswerType = AnswerType.No
                     });
 
                     if (_answer != null)
@@ -116,6 +123,46 @@ namespace Skclusive.Blazor.Dashboard.App.View.ProductList
                         await SweetAlertMessage.ErrorMessage();
                 }
             }
+        }
+        private async void AddDetailAnswer(int QuestionId)
+        {
+            try
+            {
+                var answer = await SweetAlertMessage.InputDialog(type: "textarea", PlaceholderText: "Type your survey answer here....");
+                if (!string.IsNullOrEmpty(answer))
+                {
+                    var percentage = await SweetAlertMessage.RiskWeight();
+                    var confirm = await SweetAlertMessage.ConfirmDialogAsync(Text: "Add this answe to the question.");
+                    if (confirm != null)
+                    {
+                        var _answer = await AnswerRepository.AddAnswer(new Answer
+                        {
+                            QuestionId = QuestionId,
+                            IsActive = true,
+                            Percentage = double.Parse(percentage),
+                            UserAnswer = answer,
+                            AnswerType = AnswerType.Yes
+                        });
+
+                        if (_answer != null)
+                        {
+                            var _updatedQuestion = Survey.Questions.FirstOrDefault(p => p.QuestionId == QuestionId);
+                            _updatedQuestion.Answers.Add(_answer);
+                            StateHasChanged();
+                            await SweetAlertMessage.SuccessMessage();
+
+                        }
+                        else
+                            await SweetAlertMessage.ErrorMessage();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
         private async void DeleteQuestion(int QuestionId)
         {

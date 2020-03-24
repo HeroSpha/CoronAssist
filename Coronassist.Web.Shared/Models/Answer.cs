@@ -11,11 +11,11 @@ namespace Coronassist.Web.Shared.Models
         public string UserAnswer { get; set; }
         public double Percentage { get; set; }
         public bool IsActive { get; set; } = false;
-        public int QuestionId { get; set; }
         public AnswerType AnswerType { get; set; }
+        public int QuestionId { get; set; }
         [ForeignKey("QuestionId")]
         public virtual Question Question { get; set; }
-        public virtual FlightDetail FlightDetail { get; set; }
+       
 
     }
 }

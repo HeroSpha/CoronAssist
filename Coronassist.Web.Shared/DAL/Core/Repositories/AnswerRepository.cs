@@ -12,29 +12,28 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 {
     public class AnswerRepository : BaseRepository, IAnswerRepository
     {
-        public AnswerRepository(DatabaseService databaseService) : base(databaseService)
+        public AnswerRepository(DbContextOptions<AccountDbContext> options) : base(options)
         {
         }
 
-       
         public async Task<Answer> AddAnswer(Answer answer)
         {
             try
             {
-                var _an = await DatabaseService.accountContext.Answers.FirstOrDefaultAsync(p => p.AnswerId == answer.AnswerId);
+                var _an = await accountDbContext.Answers.FirstOrDefaultAsync(p => p.AnswerId == answer.AnswerId);
                 if(_an != null)
                 {
                     _an.UserAnswer = answer.UserAnswer;
                     _an.IsActive = answer.IsActive;
                     _an.Percentage = answer.Percentage;
-                    DatabaseService.accountContext.Answers.Update(_an);
-                    await DatabaseService.accountContext.SaveChangesAsync();
+                    accountDbContext.Answers.Update(_an);
+                    await accountDbContext.SaveChangesAsync();
                     return _an;
                 }
                 else
                 {
-                    var _answer = await DatabaseService.accountContext.Answers.AddAsync(answer);
-                    await DatabaseService.accountContext.SaveChangesAsync();
+                    var _answer = await accountDbContext.Answers.AddAsync(answer);
+                    await accountDbContext.SaveChangesAsync();
                     return _answer.Entity;
                 }
                 
@@ -50,11 +49,11 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var _an = await DatabaseService.accountContext.Answers.FirstOrDefaultAsync(p => p.AnswerId == AnswerId);
+                var _an = await accountDbContext.Answers.FirstOrDefaultAsync(p => p.AnswerId == AnswerId);
                 if (_an != null)
                 {
-                    DatabaseService.accountContext.Answers.Remove(_an);
-                    await DatabaseService.accountContext.SaveChangesAsync();
+                    accountDbContext.Answers.Remove(_an);
+                    await accountDbContext.SaveChangesAsync();
                     return true;
                 }
                 else

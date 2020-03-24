@@ -10,7 +10,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
 {
     public class BlogRepository : BaseRepository, IBlogRepository
     {
-        public BlogRepository(DatabaseService databaseService) : base(databaseService)
+        public BlogRepository(DbContextOptions<AccountDbContext> options) : base(options)
         {
         }
 
@@ -18,8 +18,8 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var _blog = await DatabaseService.accountContext.Blogs.AddAsync(blog);
-                await DatabaseService.accountContext.SaveChangesAsync();
+                var _blog = await accountDbContext.Blogs.AddAsync(blog);
+                await accountDbContext.SaveChangesAsync();
                 return _blog.Entity;
             }
             catch (Exception)
@@ -33,7 +33,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var blogs = await DatabaseService.accountContext.Blogs.ToListAsync();
+                var blogs = await accountDbContext.Blogs.ToListAsync();
                 return blogs;
             }
             catch (Exception)

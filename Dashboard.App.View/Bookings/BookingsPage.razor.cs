@@ -24,12 +24,8 @@ namespace Skclusive.Blazor.Dashboard.App.View.Bookings
         }    
         protected async override Task OnInitializedAsync()
         {
-            //Bookings = await BookRepository.GetBookings();
-            Bookings = new List<Book>
-            {
-                new Book { Address = "123 Dresden Crescent", BookDate = DateTime.Now, BookingStatus = BookingStatus.Booked, IsPaid = true, PatientName = "Siphamandla Ngwenya"},
-                new Book { Address = "123 Dresden Crescent", BookDate = DateTime.Now, BookingStatus = BookingStatus.Pending, IsPaid = true, PatientName = "Dany Ngwenya"}
-            };
+            Bookings = await BookRepository.GetBookings();
+           
             StateHasChanged();
         }
         private async void ProcessBook(BookingStatus bookingStatus)

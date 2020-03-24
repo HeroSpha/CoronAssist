@@ -25,7 +25,7 @@ namespace CoronAssist.Mobile.ViewModels
         public ICommand TakeTestCommand { get; set; }
         public SurveyDetailPageViewModel(INavigation _navigation) : base(_navigation)
         {
-            TakeTestCommand = new Command(() => { Navigation.PushAsync(new QuestionPage(Survey), true); });
+            TakeTestCommand = new Command(() => { Navigation.PushAsync(new PersonalDetail(Survey), true); });
         }
         public async void SetSurvey(int surveyId)
         {

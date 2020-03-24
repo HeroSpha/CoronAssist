@@ -18,6 +18,7 @@ namespace Coronassist.Web.Shared.DAL
         public virtual DbSet<Blog> Blogs { get; set; }
         public virtual DbSet<Faq> Faqs { get; set; }
         public virtual DbSet<FlightDetail> FlightDetails { get; set; }
+        public virtual DbSet<Settings> Settings { get; set; }
         public AccountDbContext(DbContextOptions<AccountDbContext> options)
         : base(options)
         {

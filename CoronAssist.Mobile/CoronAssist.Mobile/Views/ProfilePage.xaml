@@ -4,12 +4,56 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:icon="clr-namespace:CoronAssist.Mobile.Services"
+             Shell.BackgroundColor="{StaticResource DarkElevation12dp}"
              x:Class="CoronAssist.Mobile.Views.ProfilePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <Shell.TitleView>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label VerticalOptions="CenterAndExpand" FontSize="Large">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="CORON" TextColor="{StaticResource SecondaryColor}" />
+                        <Span Text="ASSIST" TextColor="{StaticResource PrimaryColor}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding LogOutCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icon:IconFont.Logout }"
+                                 FontFamily="{StaticResource MaterialFontFamily}"
+                                 Size="18"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <Image Source="logo.png" />
+            <StackLayout Grid.Row="1">
+                <StackLayout Margin="10"  Orientation="Horizontal">
+                    <Label Text="Name" FontSize="Medium" HorizontalOptions="StartAndExpand" />
+                    <Label Text="{Binding Profile.Fullname}" TextColor="{StaticResource DarkElevation12dp}" FontSize="Medium" />
+                </StackLayout>
+                <StackLayout Margin="10" Grid.Row="1" Orientation="Horizontal">
+                    <Label Text="Phone number" FontSize="Medium" HorizontalOptions="StartAndExpand" />
+                    <Label Text="{Binding Profile.PhoneNumber}" TextColor="{StaticResource DarkElevation12dp}" FontSize="Medium" />
+                </StackLayout>
+                <StackLayout Margin="10" Grid.Row="1" Orientation="Horizontal">
+                    <Label Text="Email Address" FontSize="Medium" HorizontalOptions="StartAndExpand" />
+                    <Label Text="{Binding Profile.EmailAddress}" TextColor="{StaticResource DarkElevation12dp}" FontSize="Medium" />
+                </StackLayout>
+                <StackLayout Margin="5" Grid.Row="1" >
+                    <Label Text="Residential Address" FontSize="Medium" HorizontalOptions="StartAndExpand" />
+                    <Label Text="{Binding Profile.FullAddress}" TextColor="{StaticResource DarkElevation12dp}" FontSize="Medium" />
+                </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -8,8 +8,15 @@
              Shell.BackgroundColor="{StaticResource DarkElevation12dp}"
              x:Class="CoronAssist.Mobile.Views.SurveyDetailPage">
     <Shell.TitleView>
-        <StackLayout>
-            <Label Text="{Binding Survey.Name}" FontSize="Large" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}" />
+        <StackLayout VerticalOptions="CenterAndExpand" Margin="10">
+            <Label VerticalOptions="CenterAndExpand" FontSize="Large">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="CORON" TextColor="{StaticResource SecondaryColor}" />
+                        <Span Text="ASSIST" TextColor="{StaticResource PrimaryColor}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.Content>
@@ -44,7 +51,7 @@
             <StackLayout Grid.Row="1" Margin="5,10">
                 <Button Text="Start Screening Test" Command="{Binding TakeTestCommand}" CornerRadius="5" TextColor="{StaticResource PrimaryColor}" BackgroundColor="{StaticResource DarkElevation12dp}" />
                 <StackLayout>
-                    <Button Text="Screen Test Results"  BackgroundColor="White" TextColor="{StaticResource PrimaryColor}" />
+                    <Button Text="Screen Test Results" CornerRadius="5" BackgroundColor="White" TextColor="{StaticResource PrimaryColor}" />
                     <Button Text="Bookings"  BackgroundColor="White" TextColor="{StaticResource PrimaryColor}" />
                 </StackLayout>
             </StackLayout>
