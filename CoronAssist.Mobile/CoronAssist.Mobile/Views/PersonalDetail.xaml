@@ -20,14 +20,16 @@
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.Content>
-        <StackLayout Margin="10">
-            <Label Text="Enter Personal Infor" FontSize="Large"/>
-            <Entry Placeholder="Full name" Text="{Binding FullName, Mode=TwoWay}" />
-            <Entry Placeholder="Phone number" Keyboard="Telephone" Text="{Binding PhoneNumber, Mode=TwoWay}" />
-            <Entry Placeholder="Email address" Keyboard="Email" Text="{Binding EmailAddress, Mode=TwoWay}" />
-            <Entry Placeholder="Medical Aid Number" Text="{Binding MedicalAidNumber, Mode=TwoWay}" />
-            <Entry Placeholder="Age" Keyboard="Numeric" Text="{Binding Age, Mode=TwoWay}" />
-            <Button Text="Submit" Command="{Binding SubmitCommand}"></Button>
-        </StackLayout>
+        <Frame HasShadow="True" Margin="5" Padding="2" IsClippedToBounds="True">
+            <StackLayout Margin="10">
+                <Label Text="Enter Personal Infor" FontSize="Medium" TextColor="{StaticResource DarkElevation12dp}"/>
+                <Entry Placeholder="Full name" Text="{Binding FullName, Mode=TwoWay}" />
+                <Entry Placeholder="Phone number" Keyboard="Telephone" Text="{Binding PhoneNumber, Mode=TwoWay}" />
+                <Entry Placeholder="Email address" Keyboard="Email" Text="{Binding EmailAddress, Mode=TwoWay}" />
+                <Entry Placeholder="Medical Aid Number" Text="{Binding MedicalAidNumber, Mode=TwoWay}" />
+                <Entry Placeholder="Age" Keyboard="Numeric" Text="{Binding Age, Mode=TwoWay}" />
+                <Button Text="Submit" Command="{Binding SubmitCommand}" TextColor="{StaticResource PrimaryColor}"></Button>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

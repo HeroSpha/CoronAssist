@@ -55,9 +55,13 @@ namespace CoronAssist.Mobile.ViewModels
         public ICommand HomeCommand { get; set; }
         public RegisterPageViewModel(INavigation _navigation) : base(_navigation)
         {
-            LoginCommand = new Command(async () => await Shell.Current.GoToAsync("//login"));
+            LoginCommand = new Command(async () => await Login());
             SignUpCommand = new Command(async () => await SignUp());
             HomeCommand = new Command(async () => await GoHome());
+        }
+        private async Task Login()
+        {
+            await Shell.Current.GoToAsync("//login");
         }
         private async Task GoHome()
         {

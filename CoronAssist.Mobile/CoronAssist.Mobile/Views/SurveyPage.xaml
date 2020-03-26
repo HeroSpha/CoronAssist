@@ -37,11 +37,10 @@
                     <DataTemplate>
                         <Frame HasShadow="True"  CornerRadius="10" IsClippedToBounds="True" BackgroundColor="{StaticResource DarkElevation12dp}" Margin="5">
                             <StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryColor}"  FontFamily="{StaticResource Regular}"  HorizontalOptions="StartAndExpand" FontSize="Large"/>
-                                    <Label Text="{Binding CreatedOn}"  FontFamily="{StaticResource Regular}" TextColor="{StaticResource SecondaryColor}" VerticalOptions="Center" HorizontalOptions="End" FontSize="Small"/>
-                                </StackLayout>
+                                <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryColor}"  FontFamily="{StaticResource Regular}"  HorizontalOptions="StartAndExpand" FontSize="Large"/>
                                 <Label Text="{Binding Description}" FontSize="Micro" TextColor="Wheat"/>
+                                <BoxView HeightRequest="1" BackgroundColor="{StaticResource PrimaryColor}"/>
+                                <Label Text="{Binding CreatedOn}"  FontFamily="{StaticResource Regular}" TextColor="{StaticResource SecondaryColor}" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
                             </StackLayout>
                         </Frame>
                     </DataTemplate>

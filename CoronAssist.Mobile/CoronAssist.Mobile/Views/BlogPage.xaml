@@ -30,14 +30,14 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="7*" />
+                                        <ColumnDefinition Width="5*" />
                                     </Grid.ColumnDefinitions>
                                     <Grid BackgroundColor="{StaticResource DarkElevation12dp}">
                                         <Label Text="{Binding CreatedOn, StringFormat='{0:dd MMM}'}" MinimumWidthRequest="40" TextColor="White" FontAttributes="Bold" FontFamily="{StaticResource Regular}" HorizontalTextAlignment="Center" FontSize="Medium" Margin="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
                                     </Grid>
                                     <StackLayout HorizontalOptions="FillAndExpand" Margin="5" Grid.Column="1">
-                                        <Label Text="{Binding Title}" FontSize="Medium" TextColor="{StaticResource PrimaryColor}" FontFamily="{StaticResource Regular}" />
-                                        <Label Text="{Binding Description}" TextType="Html" FontSize="Small" LineBreakMode="NoWrap" TextColor="{StaticResource DarkElevation12dp}" FontFamily="{StaticResource Regular}" />
+                                        <Label Text="{Binding Title}" FontSize="Medium" LineBreakMode="NoWrap" TextColor="{StaticResource PrimaryColor}" FontFamily="{StaticResource Regular}" />
+                                        <Label Text="Click to view blog details"  FontSize="Micro" LineBreakMode="NoWrap" TextColor="{StaticResource DarkElevation12dp}" FontFamily="{StaticResource Regular}" />
 
                                     </StackLayout>
                                 </Grid>

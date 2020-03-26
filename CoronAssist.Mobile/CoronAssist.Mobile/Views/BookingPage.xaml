@@ -9,8 +9,15 @@
              Shell.NavBarIsVisible="True"
              x:Class="CoronAssist.Mobile.Views.BookingPage">
     <Shell.TitleView>
-        <StackLayout>
-            <Label Text="Bookings" FontSize="Large" TextColor="White" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource Regular}" />
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label VerticalOptions="CenterAndExpand" FontSize="Large">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="CORON" TextColor="{StaticResource SecondaryColor}" />
+                        <Span Text="ASSIST" TextColor="{StaticResource PrimaryColor}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.ToolbarItems>

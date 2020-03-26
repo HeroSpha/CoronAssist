@@ -38,12 +38,12 @@
             </Grid.RowDefinitions>
             <Frame Margin="5" HasShadow="True" BackgroundColor="{Binding BackgroundColor}">
                 <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                    <Label Text="{Binding Result}" FontSize="Header"  TextColor="White" HorizontalTextAlignment="Center"/>
+                    <Label Text="{Binding Result}" FontSize="Title"  TextColor="White" HorizontalTextAlignment="Center"/>
 
                     <Label Text="{Binding Message}" FontSize="Small" TextColor="White" />
                 </StackLayout>
             </Frame>
-            <Button Grid.Row="1" Margin="10" Text="Book Appointment" Command="{Binding BookAppointmentCommand}">
+            <Button Grid.Row="1" Margin="10" Text="Book Appointment" TextColor="{StaticResource PrimaryColor}" Command="{Binding BookAppointmentCommand}">
                 
             </Button>
         </Grid>

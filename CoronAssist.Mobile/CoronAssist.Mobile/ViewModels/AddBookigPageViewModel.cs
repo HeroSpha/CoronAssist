@@ -5,6 +5,7 @@ using Flurl;
 using Flurl.Http;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,6 +15,12 @@ namespace CoronAssist.Mobile.ViewModels
 {
     public class AddBookigPageViewModel : BaseViewModel
     {
+        private ObservableCollection<BookType> types;
+        public ObservableCollection<BookType> BookingTypes
+        {
+            get { return types; }
+            set { SetProperty(ref types, value); }
+        }
         private string patientName;
         public string PatientName
         {
@@ -56,12 +63,32 @@ namespace CoronAssist.Mobile.ViewModels
             get { return time; }
             set { SetProperty(ref time, value); }
         }
+        private BookType bookType;
+        public BookType BookType
+        {
+            get { return bookType; }
+            set { SetProperty(ref bookType, value); }
+        }
         public ICommand SubmitCommand { get; set; }
         public AddBookigPageViewModel(INavigation _navigation) : base(_navigation)
         {
             SubmitCommand = new Command(async () => await SaveBooking());
             BookDate = DateTime.Now;
             MinDate = DateTime.Now;
+            BookingTypes = new ObservableCollection<BookType>
+            {
+                new BookType
+                {
+                    BookingType = BookingType.Mobile,
+                    Name = "Home"
+                },
+                 new BookType
+                {
+                    BookingType = BookingType.Hospital,
+                    Name = "Hospital"
+                },
+            };
+
         }
         private async Task SaveBooking()
         {
@@ -70,7 +97,7 @@ namespace CoronAssist.Mobile.ViewModels
                 
                 UserDialogs.Instance.ShowLoading();
                 var _book = await ServerPath.Path
-                .AppendPathSegment("api/booking/addbooking")
+                .AppendPathSegment("api/bookings/addbooking")
                 .PostJsonAsync(new Book
                 {
                     IsPaid = true,
@@ -80,18 +107,18 @@ namespace CoronAssist.Mobile.ViewModels
                     Id = App.User.Id,
                     BookDate = BookDate,
                     PatientName = PatientName,
-                    BookingType = BookingType.Hospital,
+                    BookingType = BookType.BookingType,
                     ConsultationFee = 500,
                     EmailAddress = EmailAddress,
                     PhoneNumber = PhoneNumber,
-                    Time = Time.ToString()
+                    Time = Time
                 }).ReceiveJson<Book>();
                 if(_book != null)
                 {
                     await Shell.Current.GoToAsync("//booking");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 await UserDialogs.Instance.AlertAsync("Failed to book apointment.");
             }

@@ -31,11 +31,13 @@
                         <RowDefinition Height="3*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <StackLayout Margin="5">
-                        <Label Text="{Binding Survey.Name}" FontFamily="{StaticResource Regular}" TextColor="{StaticResource PrimaryColor}" FontSize="Large"/>
-                        <Label Text="{Binding Survey.Description}" FontFamily="{StaticResource Regular}" FontSize="Small" TextColor="Wheat"/>
-                    </StackLayout>
-                    <StackLayout Grid.Row="1" Orientation="Horizontal">
+                    <ScrollView>
+                        <StackLayout Margin="5">
+                            <Label Text="{Binding Survey.Name}" FontFamily="{StaticResource Regular}" TextColor="{StaticResource PrimaryColor}" FontSize="Large"/>
+                            <Label Text="{Binding Survey.Description}" FontFamily="{StaticResource Regular}" FontSize="Small" TextColor="Wheat"/>
+                        </StackLayout>
+                    </ScrollView>
+                    <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="{StaticResource DarkElevation12dp}">
                         <Image VerticalOptions="Center">
                             <Image.Source>
                                 <FontImageSource Glyph="{x:Static icon:IconFont.Calendar }"

@@ -30,9 +30,15 @@ namespace CoronAssist.Mobile.ViewModels
             set { SetProperty(ref message, value); }
         }
         public ICommand BookAppointmentCommand { get; set; }
+        public ICommand HomeCommand { get; set; }
         public ResultPageViewModel(INavigation _navigation) : base(_navigation)
         {
             BookAppointmentCommand = new Command(async () => await BookAppointment());
+            HomeCommand = new Command(async () => await Home());
+        }
+        private async Task Home()
+        {
+            await Shell.Current.GoToAsync("//home");
         }
         private async Task BookAppointment()
         {
@@ -59,7 +65,7 @@ namespace CoronAssist.Mobile.ViewModels
                 case UserSurveyStatus.High:
                     {
                         BackgroundColor = "#FF000F";
-                        Result = "Medium Risk";
+                        Result = "High Risk";
                         Message = "You are at high risk, we recommend self quarantine. Request home testing.";
                     }
                     break;

@@ -19,7 +19,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
         {
             try
             {
-                var booking = await accountDbContext.Books.FirstOrDefaultAsync(p => p.AccountBookId == accountBook.AccountBookId);
+                var booking = await accountDbContext.Books.FirstOrDefaultAsync(p => p.BookId == accountBook.BookId);
                 //Update
                 if(booking != null)
                 {
@@ -55,7 +55,7 @@ namespace Coronassist.Web.Shared.DAL.Core.Repositories
                 BookingStatus = book.BookingStatus,
                 IsPaid = book.IsPaid,
                 PatientName = book.PatientName,
-                AccountBookId = book.AccountBookId,
+                BookId = book.BookId,
                 Id = book.Id
 
             }).ToList();

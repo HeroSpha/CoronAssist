@@ -9,7 +9,14 @@
              x:Class="CoronAssist.Mobile.Views.BlogDetailPage">
     <Shell.TitleView>
         <StackLayout VerticalOptions="CenterAndExpand">
-            <Label Text="{Binding Blog.Title}" FontSize="Large" TextColor="{StaticResource PrimaryColor}" FontFamily="{StaticResource Regular}" VerticalOptions="CenterAndExpand"/>
+            <Label VerticalOptions="CenterAndExpand" FontSize="Large" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="CORON" TextColor="{StaticResource SecondaryColor}" />
+                        <Span Text="ASSIST" TextColor="{StaticResource PrimaryColor}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </StackLayout>
     </Shell.TitleView>
     <ContentPage.Content>

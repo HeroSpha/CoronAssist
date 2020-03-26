@@ -5,7 +5,7 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <AssemblyName>Skclusive.Blazor.Dashboard.Browser.Host</AssemblyName>
     <RootNamespace>Skclusive.Blazor.Dashboard.Browser.Host</RootNamespace>
-    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+    <BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,5 +17,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dashboard.App.View\Dashboard.App.View.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 </Project>

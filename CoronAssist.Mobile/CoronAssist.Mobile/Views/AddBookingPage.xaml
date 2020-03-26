@@ -21,26 +21,39 @@
     </Shell.TitleView>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="10">
-                <Label Text="Book Appointment" FontSize="Large" FontFamily="{StaticResource Regular}" TextColor="{StaticResource DarkElevation12dp}"/>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Choose a date for test" FontFamily="{StaticResource Regular}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" />
-                    <DatePicker Date="{Binding BookDate, Mode=TwoWay}"  MinimumDate="{Binding MinDate}"  VerticalOptions="CenterAndExpand" />
+            <Frame Margin="5" HasShadow="True" Padding="0">
+                <StackLayout Margin="10">
+                    <Label Text="Book Appointment" FontSize="Medium" FontAttributes="Bold" FontFamily="{StaticResource Regular}" TextColor="{StaticResource DarkElevation12dp}"/>
+                    <Picker ItemsSource="{Binding BookingTypes}" Title="Select Booking Type" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding BookType, Mode=TwoWay}"></Picker>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Choose a date for test"  FontFamily="{StaticResource Regular}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" />
+                        <DatePicker Date="{Binding BookDate, Mode=TwoWay}" Grid.Column="1"  MinimumDate="{Binding MinDate}"  VerticalOptions="CenterAndExpand" />
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Choose time test" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource Regular}" HorizontalOptions="StartAndExpand"/>
+                        <TimePicker VerticalOptions="CenterAndExpand" Grid.Column="1" Time="{Binding Time, Mode=TwoWay}"></TimePicker>
+                    </Grid>
+                   
+                    
+                    <Entry Text="{Binding PatientName, Mode=TwoWay}" Placeholder="Patient name" />
+                    <Entry Text="{Binding PhoneNumber, Mode=TwoWay}" Keyboard="Telephone" Placeholder="Phone number" />
+                    <Entry Text="{Binding EmailAddress, Mode=TwoWay}" Keyboard="Email" Placeholder="Email Address" />
+                    <Entry Text="{Binding Address, Mode=TwoWay}" Placeholder="Residential address" />
+                    <StackLayout>
+                        <Label Text="Booking Price: R500" FontSize="Medium" FontFamily="{StaticResource Regular}" TextColor="{StaticResource PrimaryColor}" />
+                        <Label Text="Booking fee is required" TextColor="{StaticResource DarkElevation12dp}"/>
+                    </StackLayout>
+                    <Button Text="Book Appointment" BackgroundColor="{StaticResource DarkElevation12dp}" CornerRadius="5" Command="{Binding SubmitCommand}" TextColor="{StaticResource PrimaryColor}"></Button>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Choose time test" VerticalOptions="CenterAndExpand" FontFamily="{StaticResource Regular}" HorizontalOptions="StartAndExpand"/>
-                    <TimePicker VerticalOptions="CenterAndExpand" Time="{Binding Time, Mode=OneWay}"></TimePicker>
-                </StackLayout>
-                <Entry Text="{Binding PatientName, Mode=TwoWay}" Placeholder="Patient name" />
-                <Entry Text="{Binding PhoneNumber, Mode=TwoWay}" Placeholder="Phone number" />
-                <Entry Text="{Binding EmailAdress, Mode=TwoWay}" Placeholder="Email Address" />
-                <Entry Text="{Binding Address, Mode=TwoWay}" Placeholder="Residential address" />
-                <StackLayout>
-                    <Label Text="Booking Price: R500" FontSize="Medium" FontFamily="{StaticResource Regular}" TextColor="{StaticResource PrimaryColor}" />
-                    <Label Text="Booking fee is required" TextColor="{StaticResource DarkElevation12dp}"/>
-                </StackLayout>
-                <Button Text="Book Appointment" BackgroundColor="{StaticResource DarkElevation12dp}" CornerRadius="5" Command="{Binding SubmitCommand}" TextColor="{StaticResource PrimaryColor}"></Button>
-            </StackLayout>
+            </Frame>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

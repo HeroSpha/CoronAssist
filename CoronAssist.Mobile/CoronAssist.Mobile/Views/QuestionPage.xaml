@@ -20,24 +20,26 @@
                     <DataTemplate>
                         <Frame HasShadow="True" Margin="10" IsClippedToBounds="True" Padding="3">
                             <StackLayout>
-                                <Label Text="{Binding SurveyQuestion}" FontSize="Medium" TextColor="Black" FontFamily="{StaticResource Regular}" FontAttributes="Bold" />
-                                <CollectionView ItemsSource="{Binding Answers}"  HeightRequest="150"  SelectionMode="None" >
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ScrollView>
+                                <Label Text="{Binding SurveyQuestion}" FontSize="Medium" TextColor="{StaticResource DarkElevation12dp}" FontFamily="{StaticResource Regular}" FontAttributes="Bold" />
+                                <ScrollView>
+                                    <CollectionView ItemsSource="{Binding Answers}" HeightRequest="70" FlowDirection="LeftToRight" ItemsLayout="HorizontalList" VerticalScrollBarVisibility="Always"   SelectionMode="None" >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
                                                 <StackLayout Orientation="Horizontal">
                                                     <CheckBox x:Name="ckAnswer" AutomationId="{Binding AnswerId}" CheckedChanged="ckAnswer_CheckedChanged" VerticalOptions="Center" />
                                                     <Label Text="{Binding UserAnswer}" VerticalOptions="Center" />
                                                 </StackLayout>
-                                            </ScrollView>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                      
+                                    </CollectionView>
+                                </ScrollView>
                             </StackLayout>
                         </Frame>
 
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+              
             </CollectionView>
             <Button Text="Submit Test" BackgroundColor="{StaticResource DarkElevation12dp}" Command="{Binding SubmitCommand}" TextColor="{StaticResource PrimaryColor}" CornerRadius="5"></Button>
         </StackLayout>

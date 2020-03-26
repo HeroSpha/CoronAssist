@@ -13,26 +13,24 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="120" />
             </Grid.RowDefinitions>
-            <StackLayout>
-                <Entry Placeholder="Full name" Text="{Binding FullName, Mode=TwoWay}" />
-                <Entry Placeholder="Phone number" Text="{Binding PhoneNumber, Mode=TwoWay}" />
-                <Entry Placeholder="Residential Address" Text="{Binding Address, Mode=TwoWay}" />
-                <Entry Placeholder="Email Address" Text="{Binding Username, Mode=TwoWay}" />
-                <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password, Mode=TwoWay}"/>
-                <Entry Placeholder="Confirm Password" IsPassword="True" Text="{Binding ConfirmPassword, Mode=TwoWay}"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Text="Login" FontSize="Body" VerticalOptions="CenterAndExpand" TextColor="{StaticResource PrimaryColor}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding LoginCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Button Text="Sign Up" Grid.Column="1" Command="{Binding SignUpCommand}"/>
-                </Grid>
-            </StackLayout>
+            <Frame HasShadow="True" Margin="5" Padding="2">
+                <StackLayout>
+                    <Entry Placeholder="Full name" Text="{Binding FullName, Mode=TwoWay}" />
+                    <Entry Placeholder="Phone number" Text="{Binding PhoneNumber, Mode=TwoWay}" />
+                    <Entry Placeholder="Residential Address" Text="{Binding Address, Mode=TwoWay}" />
+                    <Entry Placeholder="Email Address" Text="{Binding Username, Mode=TwoWay}" />
+                    <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password, Mode=TwoWay}"/>
+                    <Entry Placeholder="Confirm Password" IsPassword="True" Text="{Binding ConfirmPassword, Mode=TwoWay}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Text="Login" Command="{Binding LoginCommand}" BackgroundColor="{StaticResource PrimaryColor}"></Button>
+                        <Button Text="Sign Up" Grid.Column="1" Command="{Binding SignUpCommand}"/>
+                    </Grid>
+                </StackLayout>
+            </Frame>
             <StackLayout Grid.Row="1">
                 <Image Source="logo.png" HeightRequest="100" />
             </StackLayout>

@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Skclusive.Blazor.Dashboard.BrowserPrerendered.Host</AssemblyName>
     <RootNamespace>Skclusive.Blazor.Dashboard.BrowserPrerendered.Host</RootNamespace>
-     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+     
     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 

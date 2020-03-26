@@ -59,7 +59,7 @@ namespace Skclusive.Blazor.Dashboard.App.View.Bookings
         private async Task UpdateBook(Book book)
         {
             var _book = await BookingRepository.AddBookings(book);
-            var selectedBook = Bookings.FirstOrDefault(p => p.AccountBookId == book.AccountBookId);
+            var selectedBook = Bookings.FirstOrDefault(p => p.BookId == book.BookId);
         }
         private async void ProcessBook(Book book)
         {
